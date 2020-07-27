@@ -13,13 +13,13 @@ jobs:
       with:
         ref: master
     - name: binsh
-      run: echo '1'
+      run: /bin/sh autocheck.sh
     - name: build
       uses: github-actions-x/hugo@master
     - name: push
       uses: github-actions-x/commit@v2.6
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.PUSH_TOKEN }}
         push-branch: 'master'
         commit-message: 'arr you code leetcode today?'
         force-add: 'true'
