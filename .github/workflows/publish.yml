@@ -20,8 +20,8 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         push-branch: 'master'
-        commit-message: 'publish'
+        commit-message: 'arr you code leetcode today?'
         force-add: 'true'
         files: a.txt b.txt c.txt dirA/ dirB/ dirC/a.txt
-        name: commiter name
-        email: my.github@email.com 
+        name: Dcell
+        email: 765736477@qq.com 
