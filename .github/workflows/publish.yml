@@ -13,7 +13,7 @@ jobs:
       with:
         ref: master
     - name: binsh
-      echo '1'
+      run: echo '1'
     - name: build
       uses: github-actions-x/hugo@master
     - name: push
