@@ -1,9 +1,8 @@
 name: publish
 
 on:
-  push:
-    branches:
-    - master
+  schedule:
+    - cron: '0 12 * * *'
     
 jobs:
   build:
@@ -13,6 +12,8 @@ jobs:
       uses: actions/checkout@master
       with:
         ref: master
+    - name: binsh
+      echo '1'
     - name: build
       uses: github-actions-x/hugo@master
     - name: push
@@ -22,6 +23,5 @@ jobs:
         push-branch: 'master'
         commit-message: 'arr you code leetcode today?'
         force-add: 'true'
-        files: a.txt b.txt c.txt dirA/ dirB/ dirC/a.txt
         name: Dcell
         email: 765736477@qq.com 
