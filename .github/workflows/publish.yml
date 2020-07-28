@@ -14,8 +14,6 @@ jobs:
         ref: master
     - name: binsh
       run: /bin/sh autocheck.sh
-    - name: build
-      uses: github-actions-x/hugo@master
     - name: push
       uses: github-actions-x/commit@v2.6
       with:
