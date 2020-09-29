@@ -19,7 +19,7 @@ jobs:
       with:
         github-token: ${{ secrets.PUSH_TOKEN }}
         push-branch: 'master'
-        commit-message: 'arr you code leetcode today?'
+        commit-message: 'are you leetcode today?'
         force-add: 'true'
         files: README.md
         name: Dcell
