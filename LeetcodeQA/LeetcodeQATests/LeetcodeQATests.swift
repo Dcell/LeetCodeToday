@@ -458,27 +458,7 @@ class LeetcodeQATests: XCTestCase {
     }
     
     
-//    数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
-//
-//
-//
-//    示例：
-//
-//    输入：n = 3
-//    输出：[
-//           "((()))",
-//           "(()())",
-//           "(())()",
-//           "()(())",
-//           "()()()"
-//         ]
-//
-//    来源：力扣（LeetCode）
-//    链接：https://leetcode-cn.com/problems/generate-parentheses
-//    著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-    func generateParenthesis(_ n: Int) -> [String] {
-        return []
-    }
+
     
 //    24. 两两交换链表中的节点
 //    给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
@@ -521,8 +501,361 @@ class LeetcodeQATests: XCTestCase {
         return dump.next
     }
     
+    // 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+    //
+    //
+    //
+    // 示例：
+    //
+    // 输入：n = 3
+    // 输出：[
+    //        "((()))",
+    //        "(()())",
+    //        "(())()",
+    //        "()(())",
+    //        "()()()"
+    //      ]
+    //
+    // 来源：力扣（LeetCode）
+    // 链接：https://leetcode-cn.com/problems/generate-parentheses
+    // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     
+     
+     func generateParenthesis(_ n: Int) -> [String] {
+        var result:[String] = []
+        func generateParent(_ left:Int,_ right:Int,_ parent:String){
+            if left == 0 && right == 0 {
+                result.append(parent)
+                return
+            }
+            if left == right {//如果左括号 等于 右边 括弧 ，只能放左括号
+                let _parent = parent + "("
+                generateParent(left - 1, right, _parent)
+            }else if(left < right){ //如果小于 可以放左括号 和 可以放右括号
+                if left > 0 {
+                    generateParent(left - 1, right, parent + "(")
+                }
+                generateParent(left, right - 1, parent + ")")
+            }
+            else{
+                return
+            }
+        }
+        generateParent(n, n, "")
+        return result
+     }
+    
+//    给你一个链表数组，每个链表都已经按升序排列。
+//
+//    请你将所有链表合并到一个升序链表中，返回合并后的链表。
+//
+//
+//
+//    示例 1：
+//
+//    输入：lists = [[1,4,5],[1,3,4],[2,6]]
+//    输出：[1,1,2,3,4,4,5,6]
+//    解释：链表数组如下：
+//    [
+//      1->4->5,
+//      1->3->4,
+//      2->6
+//    ]
+//    将它们合并到一个有序链表中得到。
+//    1->1->2->3->4->4->5->6
+//
+//    来源：力扣（LeetCode）
+//    链接：https://leetcode-cn.com/problems/merge-k-sorted-lists
+//    著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+        
+        //分治 22 合并的方法
+        func mergeKLists2(_ lists: [ListNode?]) -> ListNode? {
+                if lists.count == 0 {
+                    return nil
+                }
+                if lists.count == 1 {
+                    return lists[0]
+                }
+                var resultNode: ListNode = ListNode(-1)
+                func mergeListNodel(_ node1: ListNode?, _ node2: ListNode?,     _ result: inout ListNode) {
+                    if node1 == nil {
+                        result.next = node2
+                        return
+                    }
+                    if node2 == nil {
+                        result.next = node1
+                        return
+                    }
+
+                    if node1!.val > node2!.val {
+                        result.next = node2
+                        mergeListNodel(node1, node2?.next, &result.next!)
+                    }else{
+                        result.next = node1
+                        mergeListNodel(node1?.next, node2, &result.next!)
+                    }
+                }
+
+                var resultList:[ListNode?] = lists
+                while resultList.count > 1 {
+                    var tempList:[ListNode?] = []
+                    for idx in stride(from: 0, to: resultList.count, by: 2) {
+                        var resultNode: ListNode = ListNode(-1)
+                        if idx < resultList.count-1 {
+                            mergeListNodel(resultList[idx], resultList[idx+1], &resultNode)
+                            
+                        } else {
+                            mergeListNodel(resultList[idx], resultNode.next, &resultNode)
+                        }
+                        tempList.append(resultNode.next)
+                    }
+                    resultList = tempList
+                }
+                
+                return resultList.first!
+            }
+        
+//        let head = ListNode(0)
+//        var tmp:ListNode = ListNode(0)
+//        head.next = tmp
+//
+//        //方式2
+//        var kHash:[Int:ListNode]  = [:]
+//        var i = 0
+//        for node in lists {
+//            if node != nil {
+//                i += 1
+//                kHash[i] = node!
+//            }
+//        }
+//
+//        while !kHash.isEmpty {
+//            var minNode = ListNode(Int.max)
+//            var index = 0
+//            for item in kHash {
+//                if item.value.val < minNode.val  {
+//                    minNode = item.value
+//                    index = item.key
+//                }
+//            }
+//            if let nextNode = minNode.next {
+//                kHash[index] = nextNode
+//            }else{
+//                kHash.removeValue(forKey: index)
+//            }
+//            tmp.next = minNode
+//            tmp = minNode
+//        }
+        
+        
+        
+        
+//        var klist:[ListNode]  = []
+//        for node in lists {
+//            if node != nil {
+//                klist.append(node!)
+//            }
+//        }
+//
+//
+//        head.next = tmp
+//        while klist.count != 0 {// 第一次提交用list存储 性能太差，改成hash存储试试
+//            //找到该数组中 最小的点
+//            var minNode = ListNode(Int.max)
+//            var index = 0
+//            for item in klist.enumerated() {
+//                if item.element.val < minNode.val  {
+//                    minNode = item.element
+//                    index = item.offset
+//                }
+//            }
+//            if let nextNode = minNode.next {
+//                klist[index] = nextNode
+//            }else{
+//                klist.remove(at: index)
+//            }
+//            tmp.next = minNode
+//            tmp = minNode
+//        }
+        
+//        return head.next?.next
+        return nil
+    }
+    
+    
+//    给定一个只包含 '(' 和 ')' 的字符串，找出最长的包含有效括号的子串的长度。
+//
+//    示例 1:
+//
+//    输入: "(()"
+//    输出: 2
+//    解释: 最长有效括号子串为 "()"
+//    示例 2:
+//
+//    输入: ")()())"
+//    输出: 4
+//    解释: 最长有效括号子串为 "()()"
+//
+//    来源：力扣（LeetCode）
+//    链接：https://leetcode-cn.com/problems/longest-valid-parentheses
+//    著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+    
+    func longestValidParentheses(_ s: String) -> Int {
+        guard s.count != 0 else {
+            return 0
+        }
+        var res = 0
+        let sArray = Array(s)
+        var dp = Array(repeating: 0, count: s.count)//初始化dp默认都是0
+        for item in sArray.enumerated() {
+            if(item.element == ")" && item.offset > 0){
+                let i = item.offset
+                if sArray[i - 1] == "("  {
+                    dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2
+                } else if i - dp[i - 1] > 0 && sArray[i - dp[i - 1] - 1] == "(" {
+                    dp[i] = dp[i - 1] + (i - dp[i - 1] >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2
+                }
+                res = max(res, dp[i])
+
+            }
+        }
+        return res
+    }
+    
+    
+//    33. 搜索旋转排序数组
+//    给你一个整数数组 nums ，和一个整数 target 。
+//
+//    该整数数组原本是按升序排列，但输入时在预先未知的某个点上进行了旋转。（例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] ）。
+//
+//    请你在数组中搜索 target ，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。
+//
+//
+//    示例 1：
+//
+//    输入：nums = [4,5,6,7,0,1,2], target = 0
+//    输出：4
+//    示例 2：
+//
+//    输入：nums = [4,5,6,7,0,1,2], target = 3
+//    输出：-1
+//    示例 3：
+//
+//    输入：nums = [1], target = 0
+//    输出：-1
+//
+//
+//    提示：
+//
+//    1 <= nums.length <= 5000
+//    -10^4 <= nums[i] <= 10^4
+//    nums 中的每个值都 独一无二
+//    nums 肯定会在某个点上旋转
+//    -10^4 <= target <= 10^4
+    
+    func search(_ nums: [Int], _ target: Int) -> Int {
+            if nums.count == 0 {
+                return -1
+            }
+            if nums.count == 1 && nums[0] == target {
+                return 0
+            }
+            if nums.count == 1 {
+                return -1
+            }
+            var left  = 0
+            var right = nums.count - 1
+            while left <= right {
+                let mid = (left + right)/2
+                if nums[mid] == target {
+                    return mid
+                }
+                //判断左边是否是有序的
+                if(nums[0] <= nums[mid]){//左侧是排序的
+                    if(target >= nums[0] && target < nums[mid]){
+                        right = mid - 1
+                    }else{
+                        left = mid + 1
+                    }
+                }else{//右侧是排序的
+                    if(target > nums[mid] && target <= nums[nums.count - 1]){
+                        left = mid + 1
+                    }else{
+                        right = mid - 1
+                    }
+                }
+                
+            }
+            return -1
+        }
+    
+//    34. 在排序数组中查找元素的第一个和最后一个位置
+//    给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
+//
+//    如果数组中不存在目标值 target，返回 [-1, -1]。
+//
+//    进阶：
+//
+//    你可以设计并实现时间复杂度为 O(log n) 的算法解决此问题吗？
+//
+//
+//    示例 1：
+//
+//    输入：nums = [5,7,7,8,8,10], target = 8
+//    输出：[3,4]
+//    示例 2：
+//
+//    输入：nums = [5,7,7,8,8,10], target = 6
+//    输出：[-1,-1]
+//    示例 3：
+//
+//    输入：nums = [], target = 0
+//    输出：[-1,-1]
+    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
+        if nums.count == 0 {
+            return [-1,-1]
+        }
+        var left = 0
+        var right = nums.count - 1
+        while left <= right {
+            let mid = (left + right)/2
+            if nums[mid] == target {//如果命中 则表示就在旁边
+                var _left = mid
+                var _right = mid
+                while nums[_left] == target || nums[_right] == target {
+                    let l = _left - 1
+                    let r = _right + 1
+                    if((l < 0 || nums[l] != target) && (r > nums.count - 1 || nums[r] != target) ){
+                        return [_left,_right]
+                    }else{
+                        if (l >= 0 && nums[l] == target) {
+                            _left = l
+                        }else if (r <= nums.count - 1 && nums[r] == target) {
+                            _right = r
+                        }else{
+                            break
+                        }
+                    }
+                }
+                return [_left,_right]
+            }else{
+                if nums[mid] >= target {
+                    right = mid - 1
+                }else{
+                    left = mid + 1
+                }
+            }
+        }
+        return [-1,-1]
+    }
+
+    
     func testlengthOfLongestSubstring(){
-        print(letterCombinations("23"))
+        let result = searchRange([0,1,2,3,4,4,4], 2)
+//        longestValidParentheses(")()())")
+//        print(letterCombinations("23"))
 //        print(threeSumClosest([-1,2,1,-4],1))
 //          print(threeSum([-1, 0, 1, 2, -1, -4]))
 //        print(convert("PAYPALISHIRING", 4))
@@ -531,6 +864,8 @@ class LeetcodeQATests: XCTestCase {
 //        print(lengthOfLongestSubstring("abcabcbb"))
 //
 //        print(lengthOfLongestSubstring("bbbbbbb"))
+//        generateParenthesis(3)
+        print("end")
     }
 
 }
