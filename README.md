@@ -95,4 +95,4 @@ CODE LEETCODE TODAY?
 * [ ] 2020-12-02 12：23：52 [23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/) 主要采用分治 22 合并的方法
 * [ ] 2020-12-03 12：24：04
 * [ ] 2020-12-04 12：28：18 [34. 在排序数组中查找元素的第一个和最后一个位置]
-* [ ] 2020-12-10 12：27：39
+* [ ] 2020-12-10 12：27：39  [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/) 所有组合基本使用回溯算法，但在这个题目有个难点，就是不能重复，这边可以采用一种方式来避免：每一次搜索的时候设置 **下一轮搜索的起点** `begin` ![](https://pic.leetcode-cn.com/1598091943-GPoHAJ-file_1598091940246) 
