@@ -901,6 +901,94 @@ class LeetcodeQATests: XCTestCase {
         print(result)
         
     }
+    
+    
+    
+//    42. 接雨水
+//    给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+//
+//
+//
+//    示例 1：
+//
+//
+//
+//    输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
+//    输出：6
+//    解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。
+    func testtrap() {
+        func trap(_ height: [Int]) -> Int {//找到对应的凹槽
+            var stack:[Int] = []
+            var ans = 0
+            for i in 0..<height.count {
+                while !stack.isEmpty && height[i] > height[stack.last!] {
+                    // 当前索引
+                    let currentIndex = stack.last!
+                    while !stack.isEmpty && height[stack.last!] == height[currentIndex] {
+                        stack.popLast()
+                    }
+                    if !stack.isEmpty {
+                        let width = i - stack.last! - 1
+                        let height = min(height[i], height[stack.last!]) - height[currentIndex]
+                        ans += width * height
+                    }
+                }
+                stack.append(i)
+            }
+            return ans
+        }
+        
+        let result = trap([0,1,0,2,1,0,1,3,2,1,2,1])
+        print(result)
+    }
+    
+//    给定一个 没有重复 数字的序列，返回其所有可能的全排列。
+//
+//    示例:
+//
+//    输入: [1,2,3]
+//    输出:
+//    [
+//      [1,2,3],
+//      [1,3,2],
+//      [2,1,3],
+//      [2,3,1],
+//      [3,1,2],
+//      [3,2,1]
+//    ]
+//
+//    来源：力扣（LeetCode）
+//    链接：https://leetcode-cn.com/problems/permutations
+//    著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+    
+    func testpermute(){
+        func permute(_ nums: [Int]) -> [[Int]] {
+            if nums.count == 1 {
+                return [nums]
+            }
+            var ans:[[Int]] = []
+           
+            for item in nums.enumerated() {
+                var tmp = nums
+                tmp.remove(at: item.offset)
+                let tmpans = permute(tmp)
+                let mapans = tmpans.map { (lr) -> [Int] in
+                    var nlr = lr
+                    nlr.insert(item.element, at: 0)
+                    return nlr
+                }
+                ans.append(contentsOf: mapans)
+
+            }
+            
+            return ans
+        }
+        
+        let ans = permute([1,2,3])
+        print(ans)
+        
+    }
+    
 
     
     func testlengthOfLongestSubstring(){
