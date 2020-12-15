@@ -1044,6 +1044,53 @@ class LeetcodeQATests: XCTestCase {
         rotate(&demo)
     }
     
+    /**
+     提交记录
+     49. 字母异位词分组
+     给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
+
+     示例:
+
+     输入: ["eat", "tea", "tan", "ate", "nat", "bat"]
+     输出:
+     [
+       ["ate","eat","tea"],
+       ["nat","tan"],
+       ["bat"]
+     ]
+     说明：
+
+     所有输入均为小写字母。
+     不考虑答案输出的顺序。
+     */
+    func testgroupAnagrams(){
+        func groupAnagrams(_ strs: [String]) -> [[String]] {
+            //按照首字母排序
+            let sortStrs = strs.map { (array) -> String in
+                return String(array.sorted())
+            }
+            var hashMap:[String:[String]] = [:]
+            for i in 0..<sortStrs.count {
+                let item = sortStrs[i]
+                let realitem = strs[i]
+                if hashMap.keys.contains(item) {
+                    var list = hashMap[item]
+                    list?.append(realitem)
+                    hashMap[item] = list
+                }else{
+                    let list = [realitem]
+                    hashMap[item] = list
+                }
+            }
+            return hashMap.values.reversed()
+        }
+        
+        groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])
+    }
+    
+    
+    
+    
     
 
     
