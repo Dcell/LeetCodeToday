@@ -98,3 +98,5 @@ CODE LEETCODE TODAY?
 * [ ] 2020-12-10 12：27：39  [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/) 所有组合基本使用回溯算法，但在这个题目有个难点，就是不能重复，这边可以采用一种方式来避免：每一次搜索的时候设置 **下一轮搜索的起点** `begin` ![](https://pic.leetcode-cn.com/1598091943-GPoHAJ-file_1598091940246) 
 * [ ] 2020-12-11 12：25：49 [全排列](https://leetcode-cn.com/problems/permutations/) 可以用回溯算法，但是必须保障每个数只能用一次
 * [ ] 2020-12-12 11:   28:  00 [旋转图像](https://leetcode-cn.com/problems/rotate-image/) 其实就是二维数组的旋转 可以先对角线置换，然后每行再反转 
+* [ ] 2020-12-13 11:  00:  00 [跳跃游戏](https://leetcode-cn.com/problems/jump-game/) 该题目的难点在与怎么找到规则      1.可以对每一个能作为i起跳点 的格子都尝试跳一次，把 能跳到最远的距离 不断更新k。 如果i<k 则表示无法跳到终点
+* [ ] 2020-12-13 11:  20:  00  [合并区间](https://leetcode-cn.com/problems/merge-intervals/) 该题目有个小坑，如果不提前对左点排序，会导致逻辑很复杂；所有先对左点排序，然后再常规合并方式

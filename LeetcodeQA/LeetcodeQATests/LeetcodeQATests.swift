@@ -1043,6 +1043,89 @@ class LeetcodeQATests: XCTestCase {
         
         rotate(&demo)
     }
+//    55. 跳跃游戏
+//    给定一个非负整数数组，你最初位于数组的第一个位置。
+//
+//    数组中的每个元素代表你在该位置可以跳跃的最大长度。
+//
+//    判断你是否能够到达最后一个位置。
+//
+//    示例 1:
+//
+//    输入: [2,3,1,1,4]
+//    输出: true
+//    解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。
+//    示例 2:
+//
+//    输入: [3,2,1,0,4]
+//    输出: false
+//    解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。
+//
+    func testcanJump(){
+//        如果某一个作为 起跳点 的格子可以跳跃的距离是 3，那么表示后面 3 个格子都可以作为 起跳点。
+//        可以对每一个能作为 起跳点 的格子都尝试跳一次，把 能跳到最远的距离 不断更新。
+//        如果可以一直跳到最后，就成功了。
+//
+//        作者：ikaruga
+//        链接：https://leetcode-cn.com/problems/jump-game/solution/55-by-ikaruga/
+//        来源：力扣（LeetCode）
+//        著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+        func canJump(_ nums: [Int]) -> Bool {
+            var k = 0
+            for i in 0..<nums.count {
+                if i > k {
+                    return false
+                }
+                k = max(k, i + nums[i])
+            }
+            return true
+        }
+    }
+    
+    
+    /**56. 合并区间
+     给出一个区间的集合，请合并所有重叠的区间。
+
+      
+
+     示例 1:
+
+     输入: intervals = [[1,3],[2,6],[8,10],[15,18]]
+     输出: [[1,6],[8,10],[15,18]]
+     解释: 区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
+     示例 2:
+
+     输入: intervals = [[1,4],[4,5]]
+     输出: [[1,5]]
+     解释: 区间 [1,4] 和 [4,5] 可被视为重叠区间。
+     注意：输入类型已于2019年4月15日更改。 请重置默认代码定义以获取新方法签名。*/
+    func testmerge(){
+        func merge(_ intervals: [[Int]]) -> [[Int]] {
+            if intervals.count <= 0 {
+                return []
+            }
+            //先按照左边点，重新排序
+            var intervals = intervals
+            intervals.sort { (lf, lr) -> Bool in
+                return lf[0] < lr[0]
+            }
+            var ans:[[Int]] = []
+            ans.append(intervals[0])
+            for i in 1..<intervals.count {
+                let currInterval = intervals[i]
+                var lastInterval = ans.last!
+                if currInterval[0] >  lastInterval[1] {
+                    ans.append(currInterval)
+                }else{
+                    lastInterval[1] = max(lastInterval[1], currInterval[1])
+                    ans.popLast()
+                    ans.append(lastInterval)
+                }
+            }
+            return ans
+        }
+        merge([[1,3],[2,6],[8,10],[15,18]])
+    }
     
     /**
      提交记录
