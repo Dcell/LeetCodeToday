@@ -102,4 +102,5 @@ CODE LEETCODE TODAY?
 * [ ] 2020-12-13 11:  20:  00  [合并区间](https://leetcode-cn.com/problems/merge-intervals/) 该题目有个小坑，如果不提前对左点排序，会导致逻辑很复杂；所有先对左点排序，然后再常规合并方式
 * [ ] 2020-12-14 11: 20: 00 [字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/) 该题目的难点在与怎么判断 2个字符串顺序不一样，但是字母一样，比如‘abc’ 和 ‘bac’ ，第一种 可以对 字母排序  第二种 可以用字母对应质数来相乘 确定2个字符串一致
 * [ ] 2020-12-16 12：31：31 [不同路径](https://leetcode-cn.com/problems/unique-paths/) 因为不需要列出所有的路径，所以只用dp就解决 路径数
-* [ ] 2020-12-17 12：28：11
+* [ ] 2020-12-17 12：28：11 [螺旋矩阵 II](https://leetcode-cn.com/problems/minimum-path-sum) 这题主要是思路，while循环外圈，然后在for循环 4个边
+* [ ] 2020-12-17 12：28：11 [最小路径和](https://leetcode-cn.com/problems/minimum-path-sum)  和不同路径有点像 用dp，思路可以复用2维数组，状态转移工程：dp[x] [y] = dp[x] [y] + min(dp[x-1] [y] ,  dp[x] [y- 1])
