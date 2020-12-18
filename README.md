@@ -104,3 +104,4 @@ CODE LEETCODE TODAY?
 * [ ] 2020-12-16 12：31：31 [不同路径](https://leetcode-cn.com/problems/unique-paths/) 因为不需要列出所有的路径，所以只用dp就解决 路径数
 * [ ] 2020-12-17 12：28：11 [螺旋矩阵 II](https://leetcode-cn.com/problems/minimum-path-sum) 这题主要是思路，while循环外圈，然后在for循环 4个边
 * [ ] 2020-12-17 12：28：11 [最小路径和](https://leetcode-cn.com/problems/minimum-path-sum)  和不同路径有点像 用dp，思路可以复用2维数组，状态转移工程：dp[x] [y] = dp[x] [y] + min(dp[x-1] [y] ,  dp[x] [y- 1])
+* [ ] 2020-12-18 12：28：52
