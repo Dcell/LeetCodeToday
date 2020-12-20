@@ -228,3 +228,5 @@ CODE LEETCODE TODAY?
   并且初始化，如下dp 2维数组
 
   ![https://pic.leetcode-cn.com/76574ab7ff2877d63b80a2d4f8496fab3c441065552edc562f62d5809e75e97e-Snipaste_2019-05-29_15-28-02.png](https://pic.leetcode-cn.com/76574ab7ff2877d63b80a2d4f8496fab3c441065552edc562f62d5809e75e97e-Snipaste_2019-05-29_15-28-02.png)
+
+- [ ] 2020-12-20 10: 51 [颜色分类](https://leetcode-cn.com/problems/sort-colors/) 这题和数组中数字分类好像一样，我采用的是旋转的方式，第一次打败100%... 
