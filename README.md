@@ -203,8 +203,11 @@ CODE LEETCODE TODAY?
 * [ ] 2020-12-14 11: 20: 00 [字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/) 该题目的难点在与怎么判断 2个字符串顺序不一样，但是字母一样，比如‘abc’ 和 ‘bac’ ，第一种 可以对 字母排序  第二种 可以用字母对应质数来相乘 确定2个字符串一致
 
 * [ ] 2020-12-16 12：31：31 [不同路径](https://leetcode-cn.com/problems/unique-paths/) 因为不需要列出所有的路径，所以只用dp就解决 路径数
+
 * [ ] 2020-12-17 12：28：11 [螺旋矩阵 II](https://leetcode-cn.com/problems/minimum-path-sum) 这题主要是思路，while循环外圈，然后在for循环 4个边
+
 * [ ] 2020-12-17 12：28：11 [最小路径和](https://leetcode-cn.com/problems/minimum-path-sum)  和不同路径有点像 用dp，思路可以复用2维数组，状态转移工程：dp[x] [y] = dp[x] [y] + min(dp[x-1] [y] ,  dp[x] [y- 1])
+
 * [ ] 2020-12-18 12：28：52
 
 * [ ] 2020-12-19 11:  01: 30 [编辑距离](https://leetcode-cn.com/problems/edit-distance/) 这题实在是有点难，看了题目想了半天也没有思路，感觉是用dp来解，但是没有找到状态转移工程式，请原谅我面向题解编程
@@ -230,5 +233,10 @@ CODE LEETCODE TODAY?
   ![https://pic.leetcode-cn.com/76574ab7ff2877d63b80a2d4f8496fab3c441065552edc562f62d5809e75e97e-Snipaste_2019-05-29_15-28-02.png](https://pic.leetcode-cn.com/76574ab7ff2877d63b80a2d4f8496fab3c441065552edc562f62d5809e75e97e-Snipaste_2019-05-29_15-28-02.png)
 
 * [ ] 2020-12-20 10: 51 [颜色分类](https://leetcode-cn.com/problems/sort-colors/) 这题和数组中数字分类好像一样，我采用的是旋转的方式，第一次打败100%... 
+
 * [ ] 2020-12-21 02：28：30
+
+* [ ] 2020-12-22 11:12 [最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) 有点难，主要是思想这块没有联想过去，总结下：是不是字符串覆盖类似这种问题可以使用滑窗思想来解决呢？
+
+* [ ] 2020-12-22 11:34 [子集](https://leetcode-cn.com/problems/subsets/)  该问题可以通过递归来解决，所有组合s等于  [s - last] + lastnum
 
