@@ -1459,6 +1459,59 @@ class LeetcodeQATests: XCTestCase {
     }
     
     
+    /**
+     79. 单词搜索
+     给定一个二维网格和一个单词，找出该单词是否存在于网格中。
+
+     单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+
+      
+
+     示例:
+
+     board =
+     [
+       ['A','B','C','E'],
+       ['S','F','C','S'],
+       ['A','D','E','E']
+     ]
+
+     给定 word = "ABCCED", 返回 true
+     给定 word = "SEE", 返回 true
+     给定 word = "ABCB", 返回 false
+     */
+    func testsearch(){
+        func exist(_ board: [[Character]], _ word: String) -> Bool {
+            let wordArray = Array(word)
+            func dfs(_ board: [[Character]], _ word: Array<Character>,_ wordindex:Int,_ x:Int, _ y:Int) -> Bool{
+                if board[x][y] != word[wordindex] { //如果值不相同
+                    return false
+                }
+                if wordindex == word.count - 1 { //如果最后一个值也相同 则直接返回true
+                    return true
+                }
+                var tmpboard = board
+                tmpboard[x][y] = "0"
+                let wordindex = wordindex + 1
+                if x > 0 && dfs(tmpboard, word, wordindex, x - 1, y) || y > 0 && dfs(tmpboard, word, wordindex, x, y - 1) || x < board.count - 1 && dfs(tmpboard, word, wordindex, x + 1, y) || y < board[x].count - 1 && dfs(tmpboard, word, wordindex, x, y + 1) {
+                    return true
+                }
+                return false
+            }
+            
+            for i in 0..<board.count {
+                for j in 0..<board[i].count {
+                    if(dfs(board, wordArray, 0, i, j)){
+                        return true
+                    }
+                }
+            }
+            
+            return false
+        }
+    }
+    
+    
 
     
 

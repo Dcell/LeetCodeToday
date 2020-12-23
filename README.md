@@ -240,4 +240,4 @@ CODE LEETCODE TODAY?
 
 * [ ] 2020-12-22 11:34 [子集](https://leetcode-cn.com/problems/subsets/)  该问题可以通过递归来解决，所有组合s等于  [s - last] + lastnum
 
-* [ ] 2020-12-23 12：32：13
+* [ ] 2020-12-23 11:12:13  [单词搜索](https://leetcode-cn.com/problems/word-search/) 回溯算法，主要是要注意细节，还有就是重复项 应该如何去处理，可以采用替换特殊单词的方式
