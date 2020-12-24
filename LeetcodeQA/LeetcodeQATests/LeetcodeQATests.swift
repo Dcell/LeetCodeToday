@@ -1512,6 +1512,89 @@ class LeetcodeQATests: XCTestCase {
     }
     
     
+    /**
+     84. 柱状图中最大的矩形
+     给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
+
+     求在该柱状图中，能够勾勒出来的矩形的最大面积。
+     
+     示例:
+
+     输入: [2,1,5,6,2,3]
+     输出: 10
+     */
+    func testlargestRectangleArea(){
+//        func largestRectangleArea(_ heights: [Int]) -> Int {
+//            func maxSize(_ heights: [Int]) ->Int{
+//                if heights.count == 0 {
+//                    return 0
+//                }
+//                if heights.count == 1  {
+//                    return heights[0]
+//                }
+//                let right = heights.count - 1
+//                var left = heights.count - 1
+//                var maxsize = 0
+//                var minHeight = min(heights[left], heights[right])
+//                while left >= 0 {
+//                    let w = right - left + 1
+//                    minHeight = min(minHeight, heights[left])
+//                    maxsize = max(maxsize, w*minHeight)
+//                    left -= 1
+//                }
+//                return maxsize
+//            }
+//            var stack:[Int] = []
+//            var maxsize = 0
+//            for i in 0..<heights.count {
+//                stack.append(heights[i])
+//                maxsize = max(maxsize, maxSize(stack))
+//            }
+//
+//            return maxsize
+//        }
+        
+        func largestRectangleArea(_ heights: [Int]) -> Int {
+                if heights.isEmpty {
+                 return 0
+             }
+             if heights.count == 1 {
+                 return heights.first!
+             }
+             var heights = heights
+             var stack = [Int]()
+             //防止都是递增
+             heights.append(0)
+             var maxArea = 0
+             for i in 0..<heights.count {
+                 //当前栈不为空 & 紧接着元素 小于 栈顶元素
+                 while !stack.isEmpty && heights[stack.last!] >= heights[i] {
+                     //栈顶元素出栈
+                     var last = stack.removeLast()
+                     var width = 0
+                     if !stack.isEmpty {
+                         //计算栈顶元素为高度的矩形时，因为它已经出栈
+                         //宽度等于 当前比栈顶小的 -  栈顶之前比栈顶小的 ，由于栈顶已经出栈 ，再 - 1
+                         //此时的栈顶放的是比已经出栈的栈顶严格小的那个
+                         width = i - stack.last! - 1
+                     } else {
+                         width = i
+                     }
+                     maxArea = max(maxArea, heights[last] * width)
+                 }
+                 stack.append(i)
+             }
+             
+             return maxArea
+         }
+        
+        //let ans = largestRectangleArea([1,1])
+        let ans2 = largestRectangleArea([2,1,5,6,2,3])
+//        let ans3 = largestRectangleArea([0,9])
+        
+        print(ans2)
+    }
+
 
     
 
