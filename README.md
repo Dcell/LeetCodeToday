@@ -247,3 +247,6 @@ CODE LEETCODE TODAY?
 * [ ] 2020-12-24 11:46:12 [柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)  hard果真难，思路难 而且得有技巧 和 接雨水有的一拼，总体思路分2步  1.计算最大面积，Max（覆盖第N块木板的面积）2.如何计算第N块木头的面积， 用单调栈，  这个技巧真是巧妙，甘拜下风。👍
 
 * [ ] 2020-12-25 12：30：33  又一题Hard 直接自闭了，还是先刷点中等的吧。。。[二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/) 直接可以用递归，因为是中序左->中->右
+
+* [ ] [同的二叉搜索树](https://leetcode-cn.com/problems/unique-binary-search-trees/)  首先要明白 搜索树的概念，左节点所有值 都要小于 右节点；因为条件是递增的所有，满足搜索条件，可以用地球引力的方式来理解，随便抓一个点，左边肯定右边的小。
+

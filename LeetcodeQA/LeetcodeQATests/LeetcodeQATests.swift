@@ -1627,6 +1627,33 @@ class LeetcodeQATests: XCTestCase {
             return ans
         }
     }
+    
+    
+    
+    /**
+     96. 不同的二叉搜索树
+     给定一个整数 n，求以 1 ... n 为节点组成的二叉搜索树有多少种？
+     */
+    func testnumtrees(){
+        func numTrees(_ n: Int) -> Int {
+            var dp = Array(repeating: 0, count: n + 1)
+            dp[1] = 1
+            dp[0] = 1
+            if n > 1 {
+                for i in 2...n {
+                    let s = i - 1
+                    var count = 0
+                    for j in 0..<i {
+                        count += (dp[j] * dp[s - j])
+                    }
+                    dp[i] = count
+                }
+            }
+            return dp[n]
+        }
+        let ans = numTrees(1)
+        print(ans)
+    }
 
 
 
