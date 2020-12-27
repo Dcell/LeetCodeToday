@@ -250,3 +250,5 @@ CODE LEETCODE TODAY?
 
 * [ ] [同的二叉搜索树](https://leetcode-cn.com/problems/unique-binary-search-trees/)  首先要明白 搜索树的概念，左节点所有值 都要小于 右节点；因为条件是递增的所有，满足搜索条件，可以用地球引力的方式来理解，随便抓一个点，左边肯定右边的小。
 
+* [ ] [验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/) 因为是搜索2叉树，所以左一定小于中，右一定大于中，用常用的递归就可以解决；但是2叉树 中序遍历，会生成一个递增的数组，也可以用这个方式来判断
+

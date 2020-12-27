@@ -1654,6 +1654,49 @@ class LeetcodeQATests: XCTestCase {
         let ans = numTrees(1)
         print(ans)
     }
+    /**
+     98. 验证二叉搜索树
+     给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+
+     假设一个二叉搜索树具有如下特征：
+
+     节点的左子树只包含小于当前节点的数。
+     节点的右子树只包含大于当前节点的数。
+     所有左子树和右子树自身必须也是二叉搜索树。
+     */
+    func testisValidBST(){
+        func isValidBST(_ root: TreeNode?) -> Bool {
+//            guard let node = root else {
+//                return true
+//            }
+//            var leftisValidBST = true
+//            var rightisValiBST = true
+//            if let left = node.left{
+//                leftisValidBST = node.val > left.val && isValidBST(left)
+//            }
+//            if let right = node.right{
+//                rightisValiBST = node.val < right.val && isValidBST(right)
+//            }
+//            return leftisValidBST && rightisValiBST
+            var lastNum = Int.min
+            func dfs(_ node:TreeNode?) -> Bool{
+                guard let node = node else {
+                    return true
+                }
+                guard dfs(node.left) else{
+                    return false
+                }
+                if node.val <= lastNum {
+                    return false
+                }
+                lastNum = node.val
+                let isRight = dfs(node.right)
+                return isRight
+            }
+            return dfs(root)
+        }
+    }
+
 
 
 
