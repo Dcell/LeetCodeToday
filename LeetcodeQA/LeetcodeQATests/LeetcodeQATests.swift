@@ -1697,6 +1697,74 @@ class LeetcodeQATests: XCTestCase {
         }
     }
 
+    /**
+     102. 二叉树的层序遍历
+     给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。
+
+      
+
+     示例：
+     二叉树：[3,9,20,null,null,15,7],
+     返回其层序遍历结果：
+
+     [
+       [3],
+       [9,20],
+       [15,7]
+     ]
+     */
+    func testlevelOrder(){
+        func levelOrder(_ root: TreeNode?) -> [[Int]] {
+//            var ans:[Int:[Int]] = [:]
+//            func dfs(_ root: TreeNode?,_ index:Int){
+//                guard let node = root else {
+//                    return
+//                }
+//                var list:[Int] = []
+//                if ans.keys.contains(index){
+//                    list = ans[index]!
+//                }
+//                list.append(node.val)
+//                ans[index] = list
+//                dfs(node.left, index + 1)
+//                dfs(node.right, index + 1)
+//            }
+//
+//            dfs(root, 0)
+//            return ans.sorted { (value1, value2) -> Bool in
+//                return value1.key < value2.key
+//            }.map { (value) -> [Int] in
+//                return value.value
+//            }
+            var ans:[[Int]] = []
+            func bfs(_ root:TreeNode){
+                var queue:[TreeNode] = []
+                queue.append(root)
+                while !queue.isEmpty {
+                    let size = queue.count
+                    var levelorder:[Int] = []
+                    for i in 0..<size {
+                        let node = queue.removeFirst()
+                        levelorder.append(node.val)
+                        if let left = node.left{
+                            queue.append(left)
+                        }
+                        if let right = node.right{
+                            queue.append(right)
+                        }
+                    }
+                    ans.append(levelorder)
+                    
+                }
+            }
+            if let node = root {
+                bfs(node)
+            }
+            
+            return ans
+        }
+    }
+
 
 
 

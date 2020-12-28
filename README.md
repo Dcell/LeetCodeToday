@@ -252,3 +252,5 @@ CODE LEETCODE TODAY?
 
 * [ ] [验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/) 因为是搜索2叉树，所以左一定小于中，右一定大于中，用常用的递归就可以解决；但是2叉树 中序遍历，会生成一个递增的数组，也可以用这个方式来判断
 
+* [ ] [二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)  树的bfs搜索 广度优先，但是因为要输出每层的一个数组，这里我以为用字典去存储，但是发现有位大佬有个巧妙的办法，每次到下一层，队列的个数 就是当前层的个数，自己看下代码吧，比较的巧妙
+
