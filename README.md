@@ -264,4 +264,5 @@ CODE LEETCODE TODAY?
 
 - [ ] [114. 二叉树展开为链表](https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/)  前序、 递归，root-> left -> right 难点就是原地，不能用额外的空间  这里看到大佬的一句话，递归的一个非常重要的点就是：**不去管函数的内部细节是如何处理的，我们只看其函数作用以及输入与输出** 
 - [ ]  [二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/) 题目比较难理解，一句话就是，你随便画一个线，得到最大的和。我是看了题解写的，还是递归的思想。不难，就是比较难想到。
+- [ ]  [最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)  不考虑性能 可以直接排序 然后判断，我用hash 把值都存起来，然后再一个个去找
 
