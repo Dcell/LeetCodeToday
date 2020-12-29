@@ -1844,10 +1844,96 @@ class LeetcodeQATests: XCTestCase {
             return helper(0, postorder.count - 1 , 0, inorder.count - 1)
         }
     }
+    
+    /**
+     114. 二叉树展开为链表
+     给定一个二叉树，原地将它展开为一个单链表。
 
+      
 
+     例如，给定二叉树
 
+         1
+        / \
+       2   5
+      / \   \
+     3   4   6
+     将其展开为：
 
+     1
+      \
+       2
+        \
+         3
+          \
+           4
+            \
+             5
+              \
+               6
+     */
+    func testflatten(){
+        //前序？
+        func flatten(_ root: TreeNode?) {
+//            func dfs(_ root: TreeNode?) -> TreeNode?{
+//                guard let node = root else {
+//                    return nil
+//                }
+//                //
+//                dfs(node.left)
+//                dfs(node.right)
+//            }
+//            let right = root?.right
+//            root?.right =  dfs(root?.left)
+            guard let node = root else {
+                return
+            }
+            flatten(node.left) //左边改成链接
+            flatten(node.right) //右边改成链接
+            let tmp = node.right
+            node.right = node.left
+            node.left = nil
+            //找到右边最后一个节点，再拼接上tmp
+            var tmpRoot:TreeNode? = node
+            while tmpRoot?.right != nil {
+                tmpRoot = tmpRoot?.right
+            }
+            tmpRoot?.right = tmp
+            
+            
+        }
+    }
+    
+    /**
+     二叉树中的最大路径和
+     给定一个非空二叉树，返回其最大路径和。
 
+     本题中，路径被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。该路径至少包含一个节点，且不一定经过根节点。
 
+     来源：力扣（LeetCode）
+     链接：https://leetcode-cn.com/problems/binary-tree-maximum-path-sum
+     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    func testmaxPathSum(){
+        func maxPathSum(_ root: TreeNode?) -> Int {
+            var maxSum = Int.min
+            func dfs(_ root: TreeNode?) -> Int{
+                guard let node = root else {
+                    return 0
+                }
+                let left = dfs(node.left)
+                let right = dfs(node.right)
+                let nodeMax = node.val + left + right
+                maxSum = max(maxSum, nodeMax)
+                
+                var nextStep = max(left, right)
+                nextStep = max(0, nextStep)
+                let value = node.val + nextStep
+                return max(0, value)
+                
+            }
+            dfs(root)
+            return maxSum
+        }
+    }
 }
