@@ -1764,6 +1764,88 @@ class LeetcodeQATests: XCTestCase {
             return ans
         }
     }
+    
+    /**
+     105. 从前序与中序遍历序列构造二叉树
+     根据一棵树的前序遍历与中序遍历构造二叉树。
+
+     注意:
+     你可以假设树中没有重复的元素。
+
+     例如，给出
+
+     前序遍历 preorder = [3,9,20,15,7]
+     中序遍历 inorder = [9,3,15,20,7]
+     返回如下的二叉树：
+     */
+    func testbuildTree(){
+        func buildTree(_ preorder: [Int], _ inorder: [Int]) -> TreeNode? {
+            
+            func findIndexInorder(_ val:Int) -> Int{
+                return inorder.firstIndex(of: val)!
+            }
+            
+            func helper(_ perorderStart:Int,_ perorderEnd:Int,_ inorderStart:Int,_ inorderEnd:Int) -> TreeNode?{
+                if perorderStart >= perorderEnd {
+                    return nil
+                }
+                if inorderStart >=  inorderEnd{
+                    return nil
+                }
+                let node = TreeNode(preorder[perorderStart])
+                let index = findIndexInorder(preorder[perorderStart])
+                node.left = helper(perorderStart + 1, perorderStart + 1 + index - inorderStart, inorderStart, index)
+                node.right = helper(perorderStart + 1 + index - inorderStart, perorderEnd, index + 1, inorderEnd)
+                
+                return node
+            }
+            
+            return helper(0, preorder.count , 0, inorder.count)
+        }
+    }
+    
+    /**
+     106. 从中序与后序遍历序列构造二叉树
+     根据一棵树的中序遍历与后序遍历构造二叉树。
+
+     注意:
+     你可以假设树中没有重复的元素。
+
+     例如，给出
+
+     中序遍历 inorder = [9,3,15,20,7]
+     后序遍历 postorder = [9,15,7,20,3]
+     */
+    func testbuildTree2(){
+        
+        func buildTree(_ inorder: [Int], _ postorder: [Int]) -> TreeNode? {
+            func findIndexInorder(_ val:Int) -> Int{
+                return inorder.firstIndex(of: val)!
+            }
+            func helper(_ postorderStart:Int,_ postorderEnd:Int,_ inorderStart:Int,_ inorderEnd:Int) -> TreeNode?{
+                if postorderStart >  postorderEnd || inorderStart > inorderEnd{
+                    return nil
+                }
+                if postorderStart == postorderEnd {
+                    return TreeNode(postorder[postorderEnd])
+                }
+                if inorderStart ==  inorderEnd{
+                    return TreeNode(inorder[inorderEnd])
+                }
+                let node = TreeNode(postorder[postorderEnd])
+                let index = findIndexInorder(postorder[postorderEnd])
+                let leftinorderSize = index - inorderStart
+                node.left = helper(postorderStart,postorderStart + leftinorderSize - 1, inorderStart, index - 1)
+                node.right = helper(postorderStart + leftinorderSize ,postorderEnd - 1, index + 1, inorderEnd)
+                
+                return node
+            }
+            
+            return helper(0, postorder.count - 1 , 0, inorder.count - 1)
+        }
+    }
+
+
 
 
 

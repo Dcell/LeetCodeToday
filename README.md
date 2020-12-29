@@ -254,3 +254,11 @@ CODE LEETCODE TODAY?
 
 * [ ] [二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)  树的bfs搜索 广度优先，但是因为要输出每层的一个数组，这里我以为用字典去存储，但是发现有位大佬有个巧妙的办法，每次到下一层，队列的个数 就是当前层的个数，自己看下代码吧，比较的巧妙
 
+* [ ] [从中序与后序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)  前序/后序 + 中序 是可以确认一个2叉树的，给个图自己理解 
+
+   ```
+   [根节点, [左子树的前序遍历], [右子树的前序遍历]]
+   [[左子树的中序遍历], 根节点, [右子树的中序遍历]]
+   [[左子树的后序遍历], [右子树的后序遍历], 根节点]
+   ```
+
