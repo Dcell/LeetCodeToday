@@ -266,3 +266,4 @@ CODE LEETCODE TODAY?
 - [ ]  [二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/) 题目比较难理解，一句话就是，你随便画一个线，得到最大的和。我是看了题解写的，还是递归的思想。不难，就是比较难想到。
 - [ ]  [最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)  不考虑性能 可以直接排序 然后判断，我用hash 把值都存起来，然后再一个个去找
 
+* [ ] 2020-12-30 12：31：56
