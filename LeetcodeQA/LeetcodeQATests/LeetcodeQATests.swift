@@ -1989,5 +1989,146 @@ class LeetcodeQATests: XCTestCase {
         let ans2 = longestConsecutive([0,3,7,2,5,8,4,6,0,1])
         print(ans)
     }
+    
+    /**
+     运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制 。
+     实现 LRUCache 类：
+
+     LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存
+     int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。
+     void put(int key, int value) 如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字-值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。
+      
+
+     进阶：你是否可以在 O(1) 时间复杂度内完成这两种操作？
+
+      
+
+     示例：
+
+     输入
+     ["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
+     [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+     输出
+     [null, null, null, 1, null, -1, null, -1, 3, 4]
+
+     解释
+     LRUCache lRUCache = new LRUCache(2);
+     lRUCache.put(1, 1); // 缓存是 {1=1}
+     lRUCache.put(2, 2); // 缓存是 {1=1, 2=2}
+     lRUCache.get(1);    // 返回 1
+     lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
+     lRUCache.get(2);    // 返回 -1 (未找到)
+     lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
+     lRUCache.get(1);    // 返回 -1 (未找到)
+     lRUCache.get(3);    // 返回 3
+     lRUCache.get(4);    // 返回 4
+
+     来源：力扣（LeetCode）
+     链接：https://leetcode-cn.com/problems/lru-cache
+     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    class DLinkedNode: NSObject {
+        let key: Int
+        var val: Int
+        var prior: DLinkedNode?
+        var next: DLinkedNode?
+        
+        init(_ key: Int, value: Int) {
+           self.key = key
+            val = value
+        }
+        // 辅助调试 debug, 打印出信息的，方便看
+        override var description: String{
+            var result = String(val)
+            var point = prior
+            while let bee = point{
+                result = "\(bee.val) -> " + result
+                point = bee.prior
+            }
+            point = next
+            while let bee = point{
+                result = result + "-> \(bee.val)"
+                point = bee.next
+            }
+            return result
+        }
+    }
+
+
+
+
+    class LRUCache {
+        // 怎样化 O ( n ) 为 O ( 1 ). 关心的状态，都用一个专门的指针，记录了
+        var dummyHead = DLinkedNode(0, value: 0)
+        var dummyTail = DLinkedNode(0, value: 0)
+        var capacity: Int
+        var container = [Int: DLinkedNode]()
+        var hasCount: Int = 0
+
+        init(_ capacity: Int) {
+            self.capacity = capacity
+              // 建立结构
+              dummyHead.next = dummyTail
+              dummyTail.prior = dummyHead
+        }
+        
+        func get(_ key: Int) -> Int {
+            // 有一个刷新机制
+            if let node = container[key]{
+                deleteNode(node)
+                insertHead(node)
+                return node.val
+            }
+            else{
+                return -1
+            }
+        }
+        
+        func put(_ key: Int, _ value: Int) {
+            if let node = container[key]{
+                // 包含，就换顺序
+                // 还有一个更新操作
+                node.val = value
+                deleteNode(node)
+                insertHead(node)
+            }
+            else{
+                if hasCount >= capacity{
+                    // 超过，就处理
+                    hasCount -= 1
+                    deleteTail()
+                }
+                hasCount += 1
+                // 不包含，就插入头节点
+                let node = DLinkedNode(key, value: value)
+                insertHead(node)
+                container[key] = node
+            }
+        }
+        
+        func insertHead(_ node: DLinkedNode){
+            let former = dummyHead.next
+            former?.prior = node
+            dummyHead.next = node
+            node.prior = dummyHead
+            node.next = former
+        }
+        
+        // 指针操作，最好还是弄个变量，接一下
+        func deleteNode(_ node: DLinkedNode){
+            node.prior?.next = node.next
+            node.next?.prior = node.prior
+            node.prior = nil
+            node.next = nil
+        }
+        
+        func deleteTail(){
+            if let toDel = dummyTail.prior{
+                toDel.prior?.next = dummyTail
+                dummyTail.prior = toDel.prior
+                container.removeValue(forKey: toDel.key)
+            }
+        }
+    }
 
 }

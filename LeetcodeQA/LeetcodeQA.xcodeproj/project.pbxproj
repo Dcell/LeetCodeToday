@@ -14,6 +14,7 @@
 		9B2FE6062431EFB3005B7B68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2FE6052431EFB3005B7B68 /* Preview Assets.xcassets */; };
 		9B2FE6092431EFB3005B7B68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B2FE6072431EFB3005B7B68 /* LaunchScreen.storyboard */; };
 		9BBE9C4A253593F200775D26 /* LeetcodeQATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE9C49253593F200775D26 /* LeetcodeQATests.swift */; };
+		9BC3CEB7259DB123000A525D /* LeetcodeQA2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC3CEB6259DB123000A525D /* LeetcodeQA2.swift */; };
 		9BE6B26D24EE5F5E003D1519 /* TestLoadA.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE6B26C24EE5F5E003D1519 /* TestLoadA.m */; };
 		9BE6B27024EE5F8A003D1519 /* TestLoadB.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE6B26F24EE5F8A003D1519 /* TestLoadB.m */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		9BBE9C47253593F200775D26 /* LeetcodeQATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeetcodeQATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BBE9C49253593F200775D26 /* LeetcodeQATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeetcodeQATests.swift; sourceTree = "<group>"; };
 		9BBE9C4B253593F200775D26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BC3CEB6259DB123000A525D /* LeetcodeQA2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeetcodeQA2.swift; sourceTree = "<group>"; };
 		9BE6B26A24EE5F5E003D1519 /* LeetcodeQA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LeetcodeQA-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BE6B26B24EE5F5E003D1519 /* TestLoadA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLoadA.h; sourceTree = "<group>"; };
 		9BE6B26C24EE5F5E003D1519 /* TestLoadA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLoadA.m; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		9BBE9C48253593F200775D26 /* LeetcodeQATests */ = {
 			isa = PBXGroup;
 			children = (
+				9BC3CEB6259DB123000A525D /* LeetcodeQA2.swift */,
 				9BBE9C49253593F200775D26 /* LeetcodeQATests.swift */,
 				9BBE9C4B253593F200775D26 /* Info.plist */,
 			);
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BBE9C4A253593F200775D26 /* LeetcodeQATests.swift in Sources */,
+				9BC3CEB7259DB123000A525D /* LeetcodeQA2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

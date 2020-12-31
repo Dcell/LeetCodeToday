@@ -266,4 +266,5 @@ CODE LEETCODE TODAY?
 - [ ]  [二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/) 题目比较难理解，一句话就是，你随便画一个线，得到最大的和。我是看了题解写的，还是递归的思想。不难，就是比较难想到。
 - [ ]  [最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)  不考虑性能 可以直接排序 然后判断，我用hash 把值都存起来，然后再一个个去找
 
-* [ ] 2020-12-30 12：31：56
+* [ ] 2020-12-30 12：31：56 [单词拆分](https://leetcode-cn.com/problems/word-break/) 还是dp转移方程式的问题，思路非常重要  [环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)  一用快慢指针可以解决，等第一次相遇后，一个指针回到原点，然后都一步一步走，直到相遇，相遇点为循环的入口点， 感觉和 2个链接向交的很相似。
+* [ ] [排序链表](https://leetcode-cn.com/problems/sort-list/) 归并排序，主要用到2点知识：2个有序链表合并，单链表获取中间点
