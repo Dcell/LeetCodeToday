@@ -2130,5 +2130,64 @@ class LeetcodeQATests: XCTestCase {
             }
         }
     }
+    /*
+     给你一个整数数组 nums ，请你找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。
+
+      
+
+     示例 1:
+
+     输入: [2,3,-2,4]
+     输出: 6
+     解释: 子数组 [2,3] 有最大乘积 6。
+     示例 2:
+
+     输入: [-2,0,-1]
+     输出: 0
+     解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。
+
+     来源：力扣（LeetCode）
+     链接：https://leetcode-cn.com/problems/maximum-product-subarray
+     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    func testmaxProduct(){
+        func maxProduct(_ nums: [Int]) -> Int {
+            if nums.count == 1 {
+                return nums[0]
+            }
+            var maxdp = Array(nums)
+            var mindp = Array(nums)
+            var maxnum = nums[0]
+            for i in 1..<nums.count {
+                if nums[i - 1] == 0 {
+                    maxnum = max(maxnum, maxdp[i])
+                }else{
+                    let num = nums[i]
+                    if num == 0{
+                        //do nothing
+                    }else if num > 0 {
+                        let maxidp = maxdp[i - 1]
+                        let minidp = mindp[i - 1]
+                        maxdp[i] = max(num * maxidp,num)
+                        mindp[i] = min(num * minidp,num)
+                    }else{
+                        let maxidp = maxdp[i - 1]
+                        let minidp = mindp[i - 1]
+                        maxdp[i] = max(num * minidp,num)
+                        mindp[i] = min(num * maxidp,num)
+                    }
+                    
+                    maxnum = max(maxnum, maxdp[i])
+                }
+            }
+            return maxnum
+        }
+        let ans = maxProduct([2,3,-2,4])
+        let ans2 = maxProduct([-2,0,-1])
+        let ans3 = maxProduct([-2,1,1,1,1,-10])
+        let ans4 = maxProduct([0,2])
+        let ans5 = maxProduct([3,-1,4])
+        print(ans4)
+    }
 
 }
