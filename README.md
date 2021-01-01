@@ -269,3 +269,4 @@ CODE LEETCODE TODAY?
 * [ ] 2020-12-30 12：31：56 [单词拆分](https://leetcode-cn.com/problems/word-break/) 还是dp转移方程式的问题，思路非常重要  [环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)  一用快慢指针可以解决，等第一次相遇后，一个指针回到原点，然后都一步一步走，直到相遇，相遇点为循环的入口点， 感觉和 2个链接向交的很相似。
 * [ ] [排序链表](https://leetcode-cn.com/problems/sort-list/) 归并排序，主要用到2点知识：2个有序链表合并，单链表获取中间点
 * [ ] 2020-12-31 12：34：41
+* [ ] 2021-01-01 12：33：32
