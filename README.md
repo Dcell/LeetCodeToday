@@ -271,3 +271,5 @@ CODE LEETCODE TODAY?
 * [ ] 2020-12-31 12：34：41 [乘积最大子数组](https://leetcode-cn.com/problems/maximum-product-subarray/) 因为存在负数的情况，一个dp是不够用的，所以 需要2个dp 一个存 最小，一个存最大
 * [ ] 2021-01-01 12：33：32 [寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)  我没有用2分 也击败95%... 奇怪
 * [ ] [打家劫舍](https://leetcode-cn.com/problems/house-robber/)  dp状态转移 dp[i] = max(dp[i- 2] + nume[i] , dp[i - 1]). 因为不能相邻  要么 自己+ 上上家  要么就上家
+* [ ] [岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) 这里我采用了深度优先，但是性能好像一般，有空采用下 广度优先试试
+* [ ] [反转链表](https://leetcode-cn.com/problems/reverse-linked-list/).  直接递归 就反转了

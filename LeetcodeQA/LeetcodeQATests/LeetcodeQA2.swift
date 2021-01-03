@@ -203,6 +203,102 @@ class LeetcodeQA2: XCTestCase {
         let ans2 = rob([2,7,9,3,1])
         print("")
     }
+    
+    /**
+     200. 岛屿数量
+     给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+
+     岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+
+     此外，你可以假设该网格的四条边均被水包围。
+     */
+    func testnumIslands(){
+        func numIslands(_ grid: [[Character]]) -> Int {
+            var grid = grid
+            var nums = 0
+            func bfs(_ x:Int,_ y:Int){
+                if x < 0 || y < 0 {
+                   return
+                }
+                if x >= grid.count {
+                    return
+                }
+                if y >= grid[x].count {
+                    return
+                }
+                if grid[x][y] == "1" {
+                    grid[x][y] = "2"
+                    bfs(x + 1, y)
+                    bfs(x, y + 1)
+                    bfs(x - 1,y)
+                    bfs(x, y - 1)
+                }
+            }
+            
+            for i in 0..<grid.count {
+                for j in 0..<grid[i].count {
+                    if grid[i][j] == "1" {
+                        nums += 1
+                        bfs(i, j)
+                    }
+                }
+            }
+            
+            return nums
+        }
+        let ans = numIslands([
+            ["1","1","1","1","0"],
+            ["1","1","0","1","0"],
+            ["1","1","0","0","0"],
+            ["0","0","0","0","0"]
+          ])
+        let ans2 = numIslands([
+            ["1","1","0","0","0"],
+            ["1","1","0","0","0"],
+            ["0","0","1","0","0"],
+            ["0","0","0","1","1"]
+          ])
+        let ans3 = numIslands([
+                                ["1","1","1"],
+                                ["0","1","0"],
+                                ["1","1","1"]])
+        print("")
+    }
+    
+    /**
+     反转一个单链表。
+
+     示例:
+
+     输入: 1->2->3->4->5->NULL
+     输出: 5->4->3->2->1->NULL
+     进阶:
+     你可以迭代或递归地反转链表。你能否用两种方法解决这道题？
+
+
+
+     来源：力扣（LeetCode）
+     链接：https://leetcode-cn.com/problems/reverse-linked-list
+     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    func testreverseList(){
+        func reverseList(_ head: ListNode?) -> ListNode? {
+            
+            func reverse(_ head: ListNode?) -> ListNode?{
+                if head == nil || head?.next == nil {
+                    return head
+                }
+                let next = head?.next
+                head?.next = nil
+                let ans =  reverse(next)
+                next?.next = head
+                return ans
+            }
+            
+            return reverse(head)
+        }
+    }
+
 
 
 }
