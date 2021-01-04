@@ -273,3 +273,4 @@ CODE LEETCODE TODAY?
 * [ ] [打家劫舍](https://leetcode-cn.com/problems/house-robber/)  dp状态转移 dp[i] = max(dp[i- 2] + nume[i] , dp[i - 1]). 因为不能相邻  要么 自己+ 上上家  要么就上家
 * [ ] [岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) 这里我采用了深度优先，但是性能好像一般，有空采用下 广度优先试试
 * [ ] [反转链表](https://leetcode-cn.com/problems/reverse-linked-list/).  直接递归 就反转了
+* [ ] 今天碰到了2个新的数据结构，有向无环图 和 trie树。 明天打算再复习下，感觉弄懂了大概的原理 但是没有实践
