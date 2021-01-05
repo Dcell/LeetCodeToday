@@ -298,6 +298,95 @@ class LeetcodeQA2: XCTestCase {
             return reverse(head)
         }
     }
+    
+    
+    /*
+     实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。
+
+     示例:
+
+     Trie trie = new Trie();
+
+     trie.insert("apple");
+     trie.search("apple");   // 返回 true
+     trie.search("app");     // 返回 false
+     trie.startsWith("app"); // 返回 true
+     trie.insert("app");
+     trie.search("app");     // 返回 true
+     说明:
+
+     你可以假设所有的输入都是由小写字母 a-z 构成的。
+     保证所有输入均为非空字符串。
+
+     来源：力扣（LeetCode）
+     链接：https://leetcode-cn.com/problems/implement-trie-prefix-tree
+     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    class Trie {
+        let asciia:UInt8 = Character("a").asciiValue!
+        class TrieNode {
+            var isEnd = false
+            var trieNodes:[TrieNode?] = Array(repeating: nil, count: 26)
+        }
+        
+        let root:TrieNode
+
+        /** Initialize your data structure here. */
+        init() {
+            root = TrieNode()
+        }
+        
+        /** Inserts a word into the trie. */
+        func insert(_ word: String) {
+            var node = root
+            for c in Array(word){
+                let index = c.asciiValue! - asciia
+                if node.trieNodes[Int(index)] == nil {
+                    node.trieNodes[Int(index)] = TrieNode()
+                }
+                node = node.trieNodes[Int(index)]!
+            }
+            node.isEnd = true
+        }
+        
+        /** Returns if the word is in the trie. */
+        func search(_ word: String) -> Bool {
+            var node = root
+            for c in Array(word){
+                let index = c.asciiValue! - asciia
+                if node.trieNodes[Int(index)] == nil {
+                    return false
+                }
+                node = node.trieNodes[Int(index)]!
+            }
+            return node.isEnd
+        }
+        
+        /** Returns if there is any word in the trie that starts with the given prefix. */
+        func startsWith(_ prefix: String) -> Bool {
+            var node = root
+            for c in Array(prefix){
+                let index = c.asciiValue! - asciia
+                if node.trieNodes[Int(index)] == nil {
+                    return false
+                }
+                node = node.trieNodes[Int(index)]!
+            }
+            return true
+        }
+    }
+    
+    func testtrie(){
+        let trie =  Trie();
+
+        trie.insert("apple");
+        print(trie.search("apple"));   // 返回 true
+        print(trie.search("app"));     // 返回 false
+        print(trie.startsWith("app")); // 返回 true
+        print(trie.insert("app"));
+        print(trie.search("app"));     // 返回 true
+    }
+    
 
 
 
