@@ -387,6 +387,21 @@ class LeetcodeQA2: XCTestCase {
         print(trie.search("app"));     // 返回 true
     }
     
+    
+    /**
+     215. 数组中的第K个最大元素
+     在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
+     */
+    func testfindKthLargest(){
+        func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
+            var nums = nums
+            nums.sort { (lv, rv) -> Bool in
+                return lv > rv
+            }
+            return nums[k - 1]
+        }
+    }
+
 
 
 
