@@ -277,3 +277,4 @@ CODE LEETCODE TODAY?
 * [ ] trie树[实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)终于搞清楚了... 又学会一种新的数据结构～～
 * [ ] 数组中的第K个最大元素  我第一眼想到就是快排，需要复习下快排的中间值和交换方式！  第2 还有优先队列的方式 需要看下优先队列的数据结构，如果用swift 怎么实现 可以参考下java的源码
 * [ ] 2021-01-06 12：34：21
+* [ ] 2021-01-07 12：37：49
