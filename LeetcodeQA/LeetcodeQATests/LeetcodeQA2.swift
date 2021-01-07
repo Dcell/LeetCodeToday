@@ -401,6 +401,58 @@ class LeetcodeQA2: XCTestCase {
             return nums[k - 1]
         }
     }
+    
+    /**
+     在一个由 '0' 和 '1' 组成的二维矩阵内，找到只包含 '1' 的最大正方形，并返回其面积。
+     */
+    func testmaximalSquare(){
+        func maximalSquare(_ matrix: [[Character]]) -> Int {
+            
+            func isSquare(_ startx:Int,_ starty:Int,_ endx:Int,_ endy:Int) -> Bool{
+                if startx < 0 || starty < 0{
+                    return false
+                }
+                if endx >= matrix.count {
+                    return false
+                }
+                if endy >= matrix[endx].count {
+                    return false
+                }
+                for i in startx ... endx {
+                    for j in starty ... endy {
+                        if matrix[i][j] != "1" {
+                            return false
+                        }
+                    }
+                }
+                return true
+            }
+            
+            var maxmal = 0
+            for i in 0..<matrix.count {
+                for j in 0..<matrix[i].count {
+                    if matrix[i][j] == "1" {
+                        maxmal = max(maxmal, 1)
+                        let startx = i
+                        let starty = j
+                        var endx = startx
+                        var endy = starty
+                        
+                        while isSquare(startx, starty, endx, endy) {
+                            maxmal = max(maxmal, (endx - startx + 1) * (endy - starty + 1))
+                            endx += 1
+                            endy += 1
+                        }
+                    }
+                }
+            }
+            return maxmal
+         }
+        
+        let ans = maximalSquare([["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]])
+        print(<#T##items: Any...##Any#>)
+    }
+
 
 
 
