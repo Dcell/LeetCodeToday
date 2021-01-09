@@ -453,6 +453,65 @@ class LeetcodeQA2: XCTestCase {
         print(<#T##items: Any...##Any#>)
     }
 
+    
+    /**
+     翻转二叉树
+     */
+    func testinvertTree(){
+        func invertTree(_ root: TreeNode?) -> TreeNode? {
+            if root?.left == nil && root?.right == nil {
+                return root
+            }
+            let left =  root?.left
+            let right = root?.right
+            root?.right = invertTree(left)
+            root?.left = invertTree(right)
+            return root
+        }
+    }
+    
+    /**
+     234. 回文链表
+     请判断一个链表是否为回文链表。
+     */
+    func testisPalindrome(){
+        
+        func isPalindrome(_ head: ListNode?) -> Bool {
+            guard let head = head else {
+                return true
+            }
+            if head.next == nil {
+                return true
+            }
+            var fast:ListNode? = head
+            var slow:ListNode? = head
+            var p:ListNode? = nil
+            var pre:ListNode? = nil
+            while fast != nil && fast?.next != nil {
+                p = slow
+                fast = fast?.next?.next
+                slow = slow?.next
+                
+                p?.next = pre
+                pre = p
+            }
+            
+            if fast != nil {
+                slow = slow?.next
+            }
+            
+            while slow != nil && p != nil {
+                if slow?.val != p?.val {
+                    return false
+                }
+                slow = slow?.next
+                p = p?.next
+            }
+            
+            return true
+        }
+    }
+    
 
 
 

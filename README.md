@@ -277,5 +277,5 @@ CODE LEETCODE TODAY?
 * [ ] trie树[实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)终于搞清楚了... 又学会一种新的数据结构～～
 * [ ] 数组中的第K个最大元素  我第一眼想到就是快排，需要复习下快排的中间值和交换方式！  第2 还有优先队列的方式 需要看下优先队列的数据结构，如果用swift 怎么实现 可以参考下java的源码
 * [ ] 2021-01-06 12：34：21 [最大正方形](https://leetcode-cn.com/problems/maximal-square/) 其实这题想到了用dp 但是实在想不出来状态转移工程，这里备注下：dp[ i ] [ j ] = min(左边，上边，左上边) + 1  其中dp记录是边长
-* [ ] 2021-01-07 12：37：49
+* [ ] 2021-01-07 12：37：49 [回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/) 都已经想到了快慢指针了，还需要想到前面反转这个点🤔  [翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/) 这相对来说比较简单
 * [ ] 2021-01-08 12：37：16
