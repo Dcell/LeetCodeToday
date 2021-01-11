@@ -450,7 +450,7 @@ class LeetcodeQA2: XCTestCase {
          }
         
         let ans = maximalSquare([["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]])
-        print(<#T##items: Any...##Any#>)
+        
     }
 
     
@@ -539,6 +539,37 @@ class LeetcodeQA2: XCTestCase {
         }
     }
     
+    
+    /**
+     238. 除自身以外数组的乘积
+     给你一个长度为 n 的整数数组 nums，其中 n > 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。
+
+      
+
+     示例:
+
+     输入: [1,2,3,4]
+     输出: [24,12,8,6]
+     */
+    func testproductExceptSelf(){
+        func productExceptSelf(_ nums: [Int]) -> [Int] {
+            var res = Array(repeating: 1, count: nums.count)
+            var p = 1
+            for i in 0..<nums.count {
+                res[i] = p
+                p = p * nums[i]
+            }
+            //res 存储了 i 左边的乘积
+            p = 1
+            for i in stride(from: nums.count - 1, to: -1, by: -1) {
+                res[i] = p * res[i]
+                p = p * nums[i]
+            }
+            return res
+        }
+        productExceptSelf([1,2,3,4])
+    }
+
 
 
 
