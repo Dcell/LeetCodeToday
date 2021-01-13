@@ -279,4 +279,6 @@ CODE LEETCODE TODAY?
 * [ ] 2021-01-06 12：34：21 [最大正方形](https://leetcode-cn.com/problems/maximal-square/) 其实这题想到了用dp 但是实在想不出来状态转移工程，这里备注下：dp[ i ] [ j ] = min(左边，上边，左上边) + 1  其中dp记录是边长
 * [ ] 2021-01-07 12：37：49 [回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/) 都已经想到了快慢指针了，还需要想到前面反转这个点🤔  [翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/) 这相对来说比较简单
 * [ ] 2021-01-08 12：37：16 [二叉树的最近公共祖先.  这题我面试都问过别人，让自己写竟然写错了... 其实在UI层，公共的祖先还是很常见的，比如约束布局框架 其实也用到了， 思路就是 后序遍历 + 递归思想 ； root节点是祖先的有3种情况：q和p 在2边 ；q=root 或者 p = root。代码很简单，思路要清晰
-* [ ] [除自身以外数组的乘积](https://leetcode-cn.com/problems/product-of-array-except-self/) 因为不能用除，那么当前位置的值等于 左边 * 右边  首先 用数组存储一份 res[i] = nums[0]  * ... nums[i - 1] 的值，然后在反向来一次，
+* [ ] [除自身以外数组的乘积](https://leetcode-cn.com/problems/product-of-array-except-self/) 因为不能用除，那么当前位置的值等于 左边 * 右边  首先 用数组存储一份 res[i] = nums[0]  * ... nums[i - 1] 的值，然后在反向来一次
+* [ ] [滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) 这题我已经想到了用单调栈或者优先队列，但是一直没有处理好存储内容的问题，看了题解才发现 存储 索引才是好办法。。。😅
+
