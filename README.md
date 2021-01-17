@@ -283,5 +283,5 @@ CODE LEETCODE TODAY?
 * [ ] [滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) 这题我已经想到了用单调栈或者优先队列，但是一直没有处理好存储内容的问题，看了题解才发现 存储 索引才是好办法。。。😅
 
 * [ ] 2021-01-13 12：49：47 [搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/)  一看是有序的就想到2分，但是有个过滤条件，如果n[x,y] < target 那么在这个矩形里面就没有大于 target的值了
-* [ ] 2021-01-14 12：51：21
+* [ ] 2021-01-14 12：51：21 [移动零](https://leetcode-cn.com/problems/move-zeroes/) 双指针思想，采用快排的方式，！= 0 放在左边  如果等于0 则放在右边![36d1ac5d689101cbf9947465e94753c626eab7fcb736ae2175f5d87ebc85fdf0-283_2](https://pic.leetcode-cn.com/36d1ac5d689101cbf9947465e94753c626eab7fcb736ae2175f5d87ebc85fdf0-283_2.gif)
 * [ ] 2021-01-15 12：49：45
