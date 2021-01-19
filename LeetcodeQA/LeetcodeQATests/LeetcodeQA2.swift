@@ -759,6 +759,113 @@ class LeetcodeQA2: XCTestCase {
         moveZeroes(&nums)
         print("")
     }
+    
+    /**
+     给定一个包含 n + 1 个整数的数组 nums ，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。
+
+     假设 nums 只有 一个重复的整数 ，找出 这个重复的数 。
+
+      
+
+     示例 1：
+
+     输入：nums = [1,3,4,2,2]
+     输出：2
+
+     来源：力扣（LeetCode）
+     链接：https://leetcode-cn.com/problems/find-the-duplicate-number
+     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    func testfindDuplicate(){
+        // 等于 有环链表 的入口点
+        func findDuplicate(_ nums: [Int]) -> Int {
+            var slow = 0
+            var fast = 0
+            while true {
+                fast = nums[nums[fast]] //next-next
+                slow = nums[slow] // next
+                if fast == slow {
+                    break
+                }
+            }
+            fast = 0
+            while true {
+                fast = nums[fast] //next-next
+                slow = nums[slow] // next
+                if fast == slow {
+                    break
+                }
+            }
+            return slow
+        }
+    }
+    
+    
+    func testserializetree(){
+        class Codec {
+            func serialize(_ root: TreeNode?) -> String {
+                var queue:[TreeNode?] = []
+                var serializeString:[String] = []
+                func bfs(_ node: TreeNode?){
+                    queue.append(node)
+                    while !queue.isEmpty {
+                        if let node = queue.removeFirst(){
+                            serializeString.append("\(node.val)")
+                            queue.append(node.left)
+                            queue.append(node.right)
+                        }else{
+                            serializeString.append("null")
+                        }
+                    }
+                    
+                }
+                bfs(root)
+                var ans = serializeString.reduce("") { (result, element) -> String in
+                    return result + "&" + element
+                }
+                ans.removeFirst()
+                print(ans)
+                return ans
+            }
+            
+            func deserialize(_ data: String) -> TreeNode? {
+                if data == "null" {
+                    return nil
+                }
+                let slices =  data.split(separator: "&")
+                var queue:[TreeNode] = []
+                let root = TreeNode(Int(slices[0])!)
+                queue.append(root)
+                var index = 1
+                while index < slices.count{
+                    let node =  queue.removeFirst()
+                    let left = slices[index]
+                    if left != "null" {
+                        let leftNode = TreeNode(Int(left)!)
+                        node.left = leftNode
+                        queue.append(leftNode)
+                    }
+                    
+                    let right = slices[index + 1]
+                    if right != "null" {
+                        let rightNode = TreeNode(Int(right)!)
+                        node.right = rightNode
+                        queue.append(rightNode)
+                    }
+                    index += 2
+                }
+                return root
+            }
+        }
+        
+        let code = Codec()
+        code.deserialize("1&2&3&null&null&4&5")
+        
+        
+    }
+    
+
+
 
     
 
