@@ -285,3 +285,5 @@ CODE LEETCODE TODAY?
 * [ ] 2021-01-14 12：51：21 [移动零](https://leetcode-cn.com/problems/move-zeroes/) 双指针思想，采用快排的方式，！= 0 放在左边  如果等于0 则放在右边![36d1ac5d689101cbf9947465e94753c626eab7fcb736ae2175f5d87ebc85fdf0-283_2](https://pic.leetcode-cn.com/36d1ac5d689101cbf9947465e94753c626eab7fcb736ae2175f5d87ebc85fdf0-283_2.gif)
 * [ ] 2021-01-15 12：49：45 [寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/) 这题和链表寻找循环点一样，但是异常的难理解；因为数组nums[i]  即等于当前链表的值 也表示 指向下一个点
 * [ ] [297. 二叉树的序列化与反序列化   原本想用 前序遍历+中序遍历 来确定一个2叉树，但是发现 如果数字重复，那么就无法进行下去了；用BFS 输出字符串，然后再BFS 回来
+* [ ] [最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)   dp，但是需要考虑不是连续的，所以dp[i] 必须包含当前点的序列，最后取dp中 max 
+
