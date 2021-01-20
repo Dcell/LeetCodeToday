@@ -287,3 +287,4 @@ CODE LEETCODE TODAY?
 * [ ] [297. 二叉树的序列化与反序列化   原本想用 前序遍历+中序遍历 来确定一个2叉树，但是发现 如果数字重复，那么就无法进行下去了；用BFS 输出字符串，然后再BFS 回来
 * [ ] [最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)   dp，但是需要考虑不是连续的，所以dp[i] 必须包含当前点的序列，最后取dp中 max 
 
+* [ ] 2021-01-20 12：51：48
