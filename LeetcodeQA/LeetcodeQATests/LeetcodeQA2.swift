@@ -906,6 +906,88 @@ class LeetcodeQA2: XCTestCase {
             return dp.max()!
         }
     }
+    
+    
+    /**
+     312. 戳气球
+     有 n 个气球，编号为0 到 n - 1，每个气球上都标有一个数字，这些数字存在数组 nums 中。
+
+     现在要求你戳破所有的气球。戳破第 i 个气球，你可以获得 nums[i - 1] * nums[i] * nums[i + 1] 枚硬币。 这里的 i - 1 和 i + 1 代表和 i 相邻的两个气球的序号。如果 i - 1或 i + 1 超出了数组的边界，那么就当它是一个数字为 1 的气球。
+
+     求所能获得硬币的最大数量。
+
+      
+
+     示例 1：
+     输入：nums = [3,1,5,8]
+     输出：167
+     解释：
+     nums = [3,1,5,8] --> [3,5,8] --> [3,8] --> [8] --> []
+     coins =  3*1*5    +   3*5*8   +  1*3*8  + 1*8*1 = 167
+     示例 2：
+
+     输入：nums = [1,5]
+     输出：10
+     */
+    func testmaxCoins(){
+        func maxCoins(_ nums: [Int]) -> Int {
+            var nums = nums
+            nums.insert(1, at: 0)
+            nums.append(1)
+            var dp = Array(repeating: Array(repeating: 0, count: nums.count), count: nums.count)
+
+            for len in 3...nums.count {
+                for i in 0...nums.count - len {
+                    var res = 0
+                    let j = i + len - 1
+                    for k in (i + 1) ..< j {
+                        let left = dp[i][k]
+                        let right = dp[k][j]
+                        let sum = left + right + nums[k] * nums[i] * nums[j];
+                        res = max(res,sum);//取金币最大值
+                    }
+                    dp[i][j] = res
+                }
+            }
+            return dp[0][nums.count - 1]
+        }
+        func maxCoins2(_ nums: [Int]) -> Int {
+                var n = nums.count
+                var temp = [Int](repeating: 0, count: n + 2)
+                temp[0] = 1
+                temp[n + 1] = 1
+                for i in 0..<nums.count {
+                    temp[i+1] = nums[i]
+                }
+                var arr = [Int](repeating: 0, count: n + 2)
+                var dp = [[Int]](repeating: arr, count: n + 2)
+                var len = 3 //len 表示开区间长度
+                /*
+                从 (i,j) 开区间只有三个数字的时候开始计算，储存每个小区间可以得到金币的最大值
+                然后慢慢扩展到更大的区间，利用小区间里已经算好的数字来算更大的区间
+                */
+                while len <= n + 2 {
+                    //i 表示 开区间左端点
+                    for i in 0...(n + 2 - len) {
+                        var res = 0
+                        //k 为开区间内的索引 , i 和 j 之间选 K 是任意的，只需要保留获得金币最多的那种即可
+                        var j = i + len - 1
+                        for k in (i + 1)..<j {
+                            var left = dp[i][k]
+                            var right = dp[k][j]
+                            res = max(res,left + temp[i]*temp[k]*temp[j] + right)
+                        }
+                        dp[i][j] = res
+                    }
+                    
+                    len += 1
+                }
+                return dp[0][n+1]
+            }
+        let ans = maxCoins([3,1,5,8])
+        print("")
+    }
+
 
     
 
