@@ -291,3 +291,4 @@ CODE LEETCODE TODAY?
 * [ ] 2021-01-20 12：51：48 [戳气球](https://leetcode-cn.com/problems/burst-balloons/)  被虐哭了😭 面向题解编程。状态转移工程式 dp[i ] [j ] = dp [ i  ] [ k ] + num[ i ]  * num[ k ] * num[ j ] + dp [ k ] [ j ] 
 * [ ] [零钱兑换](https://leetcode-cn.com/problems/coin-change/) dp 状态转移 dp[ m ] = dp  [ m - k  ] + 1  其中 m是总额。k 表示 用某个零钱
 
+* [ ] 2021-01-21 12：58：59
