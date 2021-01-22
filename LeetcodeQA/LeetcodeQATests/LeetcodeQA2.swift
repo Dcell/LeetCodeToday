@@ -1103,6 +1103,48 @@ class LeetcodeQA2: XCTestCase {
         countBits(3)
     }
 
+    
+    
+    
+    /**
+     347. 前 K 个高频元素
+     给定一个非空的整数数组，返回其中出现频率前 k 高的元素。
+
+      
+
+     示例 1:
+
+     输入: nums = [1,1,1,2,2,3], k = 2
+     输出: [1,2]
+     示例 2:
+
+     输入: nums = [1], k = 1
+     输出: [1]
+     */
+    func testtopKFrequent(){
+        func topKFrequent(_ nums: [Int], _ k: Int) -> [Int] {
+            var numsDic:[Int:Int] = [:]
+            for i in 0..<nums.count {
+                var count = 0
+                if numsDic.keys.contains(nums[i]) {
+                    count = numsDic[nums[i]]!
+                }
+                numsDic[nums[i]] = count + 1
+            }
+            
+            let sortnumsDic =  numsDic.sorted { (l, r) -> Bool in
+                return l.value > r.value
+            }
+            var ans:[Int] = []
+            for i in 0..<sortnumsDic.count {
+                if i < k {
+                    ans.append(sortnumsDic[i].key)
+                }
+            }
+            return ans
+        }
+        topKFrequent( [1,1,1,2,2,3], 2)
+    }
 
     
 
