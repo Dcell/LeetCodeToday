@@ -1254,5 +1254,57 @@ class LeetcodeQA2: XCTestCase {
         reconstructQueue([[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]])
     }
 
+    
+    /**
+     605. 种花问题
+     假设有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花不能种植在相邻的地块上，它们会争夺水源，两者都会死去。
+
+     给你一个整数数组  flowerbed 表示花坛，由若干 0 和 1 组成，其中 0 表示没种植花，1 表示种植了花。另有一个数 n ，能否在不打破种植规则的情况下种入 n 朵花？能则返回 true ，不能则返回 false。
+     */
+
+    func testcanPlaceFlowers(){
+        func canPlaceFlowers(_ flowerbed: [Int], _ n: Int) -> Bool {
+            guard flowerbed.count >= n else {
+                return false
+            }
+            var flowerbed = flowerbed
+            flowerbed.insert(0, at: 0)
+            flowerbed.append(0)
+            var hasPlaces = 0
+            for i in 1..<(flowerbed.count - 1) {
+                if flowerbed[i] == 0 && flowerbed[i - 1] == 0 && flowerbed[i + 1] == 0 {
+                    flowerbed[i] = 1
+                    hasPlaces += 1
+                }
+            }
+            return hasPlaces >= n
+        }
+        
+        print(canPlaceFlowers([1,0,0,0,1], 1))
+        print(canPlaceFlowers([1,0,0,0,0,1], 2))
+        print(canPlaceFlowers([0], 1))
+    }
+    
+    /**
+     455. 分发饼干
+     假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。
+
+     对每个孩子 i，都有一个胃口值 g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j] 。如果 s[j] >= g[i]，我们可以将这个饼干 j 分配给孩子 i ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。
+     */
+    func findContentChildren(_ g: [Int], _ s: [Int]) -> Int {
+        var childrens = g.sorted()
+        var sizes = s.sorted()
+        var i = childrens.count - 1
+        var j = sizes.count - 1
+        var ans = 0
+        while i >= 0  && j >= 0 {
+            if sizes[j] >= childrens[i] {
+                j -= 1
+                ans += 1
+            }
+            i -= 1
+        }
+        return ans
+    }
 
 }
