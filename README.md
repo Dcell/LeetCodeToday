@@ -295,3 +295,4 @@ CODE LEETCODE TODAY?
 * [ ]  [394. 字符串解码](https://leetcode-cn.com/problems/decode-string/)  栈的使用，就是要小心处理字符的问题
 * [ ]   [根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height/)   先排序 再插入       感觉是个小技巧，    需要搞懂下原理     2个纬度的问题，先搞定一个纬度 再搞另外一个纬度
 * [ ]    [种花问题](https://leetcode-cn.com/problems/can-place-flowers/)  最近看了些贪心算法不是特别明白，想练习一些题目，这个简单题目，但是没有贪心算法的感觉
+* [ ]     需要复习下 并查集
