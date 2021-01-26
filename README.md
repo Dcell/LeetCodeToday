@@ -296,3 +296,5 @@ CODE LEETCODE TODAY?
 * [ ]   [根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height/)   先排序 再插入       感觉是个小技巧，    需要搞懂下原理     2个纬度的问题，先搞定一个纬度 再搞另外一个纬度
 * [ ]    [种花问题](https://leetcode-cn.com/problems/can-place-flowers/)  最近看了些贪心算法不是特别明白，想练习一些题目，这个简单题目，但是没有贪心算法的感觉
 * [ ]     需要复习下 并查集
+* [ ]      [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/)  真是蠢，错想了，只要 j > 1 都算一次，其实应该统计 相同牌的数量，然后 num * (num - 1) * 2. 就可以算出对应的数，因为数字都是1-9 所以可以用质素来相乘 ，因为质素相乘是唯一的
+* [ ]      [面试题 17.16. 按摩师](https://leetcode-cn.com/problems/the-masseuse-lcci/)  一看就是用dp来做，因为要休息一天，所有 dp[i] = max(dp[0] ----dp[i - 1] ) + dp[i]， 最后dp.max

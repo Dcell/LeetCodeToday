@@ -1333,8 +1333,110 @@ class LeetcodeQA2: XCTestCase {
         }
         return -1
     }
+    
+    
+    
+    /**
+     1128. 等价多米诺骨牌对的数量
+     给你一个由一些多米诺骨牌组成的列表 dominoes。
+
+     如果其中某一张多米诺骨牌可以通过旋转 0 度或 180 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。
+
+     形式上，dominoes[i] = [a, b] 和 dominoes[j] = [c, d] 等价的前提是 a==c 且 b==d，或是 a==d 且 b==c。
+
+     在 0 <= i < j < dominoes.length 的前提下，找出满足 dominoes[i] 和 dominoes[j] 等价的骨牌对 (i, j) 的数量。
+
+      
+
+     示例：
+
+     输入：dominoes = [[1,2],[2,1],[3,4],[5,6]]
+     输出：1
+      
+
+     提示：
+
+     1 <= dominoes.length <= 40000
+     1 <= dominoes[i][j] <= 9
+
+     */
+    
+    func testnumEquivDominoPairs(){
+        func numEquivDominoPairs(_ dominoes: [[Int]]) -> Int {
+            let intHash:[Int:Int] = [1:1,
+                                     2:3,
+                                     3:5,4:7,5:11,6:13,7:17,8:23,9:29]
+            var ans = 0
+            var set:[Int:Int] = [:]
+            for i in 0..<dominoes.count {
+                let unq = intHash[dominoes[i][0]]! * intHash[dominoes[i][1]]!
+                var nums = 0
+                if set.keys.contains(unq) {
+                    nums = set[unq]!
+                }
+                set[unq] = nums + 1
+            }
+            ans = set.values.reduce(0) { (result, i) -> Int in
+                return result + (i - 1) * i / 2
+            }
+            return ans
+        }
+//        func numEquivDominoPairs(_ dominoes: [[Int]]) -> Int {
+//                    var intHash:[Int:Int] = [1:1,
+//                                             2:3,
+//                                             3:5,4:7,5:11,6:13,7:17,8:23,9:29]
+//                    var ans = 0
+//                    for i in 0..<dominoes.count {
+//                        for j in (i + 1)..<dominoes.count {
+//                            let left = intHash[dominoes[i][0]]! * intHash[dominoes[i][1]]!
+//                            let right = intHash[dominoes[j][0]]! * intHash[dominoes[j][1]]!
+//                            if left == right {
+//                                print(dominoes[i])
+//                                print(dominoes[j])
+//                                ans += 1
+//                            }
+//                        }
+//                    }
+//                    return ans
+//                }
+        
+        numEquivDominoPairs([[2,1],[5,4],[3,7],[6,2],[4,4],[1,8],[9,6],[5,3],[7,4],[1,9],[1,1],[6,6],[9,6],[1,3],[9,7],[4,7],[5,1],[6,5],[1,6],[6,1],[1,8],[7,2],[2,4],[1,6],[3,1],[3,9],[3,7],[9,1],[1,9],[8,9]])
+    }
+    
 
     
+    /**
+     面试题 17.16. 按摩师
+     一个有名的按摩师会收到源源不断的预约请求，每个预约都可以选择接或不接。在每次预约服务之间要有休息时间，因此她不能接受相邻的预约。给定一个预约请求序列，替按摩师找到最优的预约集合（总预约时间最长），返回总的分钟数。
+
+     注意：本题相对原题稍作改动
+
+
+     */
     
+    func testmassage(){
+        func massage(_ nums: [Int]) -> Int {
+            if nums.count == 0 {
+                return 0
+            }
+            if nums.count == 1 {
+                return nums[0]
+            }
+            var dp:[Int] = Array(nums)
+            for i in 1..<nums.count {
+                var _max = 0
+                for j in 0..<i-1 {
+                    _max = max(_max, dp[j])
+                }
+                dp[i] = _max + dp[i]
+            }
+            
+            return dp.max()!
+        }
+        
+        massage([2,1,4,5,3,1,1,3])
+        
+    }
+
     
 }
