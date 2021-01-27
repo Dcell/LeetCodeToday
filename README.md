@@ -298,3 +298,4 @@ CODE LEETCODE TODAY?
 * [ ]     需要复习下 并查集
 * [ ]      [1128. 等价多米诺骨牌对的数量](https://leetcode-cn.com/problems/number-of-equivalent-domino-pairs/)  真是蠢，错想了，只要 j > 1 都算一次，其实应该统计 相同牌的数量，然后 num * (num - 1) * 2. 就可以算出对应的数，因为数字都是1-9 所以可以用质素来相乘 ，因为质素相乘是唯一的
 * [ ]      [面试题 17.16. 按摩师](https://leetcode-cn.com/problems/the-masseuse-lcci/)  一看就是用dp来做，因为要休息一天，所有 dp[i] = max(dp[0] ----dp[i - 1] ) + dp[i]， 最后dp.max
+* [ ] 2021-01-27 12：41：09
