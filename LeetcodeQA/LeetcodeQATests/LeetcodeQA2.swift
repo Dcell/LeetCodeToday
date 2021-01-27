@@ -1437,6 +1437,66 @@ class LeetcodeQA2: XCTestCase {
         massage([2,1,4,5,3,1,1,3])
         
     }
+    
+    /**
+     219. 存在重复元素 II
+     给定一个整数数组和一个整数 k，判断数组中是否存在两个不同的索引 i 和 j，使得 nums [i] = nums [j]，并且 i 和 j 的差的 绝对值 至多为 k。
+     */
+    func testcontainsNearbyDuplicate(){
+        func containsNearbyDuplicate(_ nums: [Int], _ k: Int) -> Bool {
+            var numsmap:[Int:Int] = [:]
+            for i in 0..<nums.count {
+                if numsmap.keys.contains(nums[i]) {
+                    let beforindex = numsmap[nums[i]]!
+                    if i - beforindex <= k {
+                        return true
+                    }
+                }
+                numsmap[nums[i]] = i
+            }
+            
+            return false
+        }
+        print(containsNearbyDuplicate([1,2,3,1], 3))
+        print(containsNearbyDuplicate([1,0,1,1], 1))
+        print(containsNearbyDuplicate([1,2,3,1,2,3], 2))
+    }
+
+    /**
+     提交记录
+     99. 恢复二叉搜索树
+     给你二叉搜索树的根节点 root ，该树中的两个节点被错误地交换。请在不改变其结构的情况下，恢复这棵树。
+
+     进阶：使用 O(n) 空间复杂度的解法很容易实现。你能想出一个只使用常数空间的解决方案吗？
+     */
+    func recoverTree(_ root: TreeNode?) {
+        var firstNode:TreeNode!
+        var secondNode:TreeNode!
+        var tmpVal:TreeNode = TreeNode(Int.min)
+        
+        func dfs(_ root: TreeNode?){
+            guard let node = root else {
+                return
+            }
+            dfs(node.left)
+            if firstNode == nil && tmpVal.val > node.val {
+                firstNode = tmpVal
+            }
+            if firstNode != nil && tmpVal.val > node.val {
+                secondNode = node
+            }
+            tmpVal = node
+            
+            dfs(node.right)
+        }
+        
+        dfs(root)
+        let tmp = secondNode.val
+        secondNode.val = firstNode.val
+        firstNode.val = tmp
+        
+    }
+    
 
     
 }
