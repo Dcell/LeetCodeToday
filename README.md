@@ -300,3 +300,4 @@ CODE LEETCODE TODAY?
 * [ ]      [面试题 17.16. 按摩师](https://leetcode-cn.com/problems/the-masseuse-lcci/)  一看就是用dp来做，因为要休息一天，所有 dp[i] = max(dp[0] ----dp[i - 1] ) + dp[i]， 最后dp.max
 * [ ] 2021-01-27 12：41：09  随机题暂时不写思路了。
 * [ ] 2021-01-28 12：31：34
+* [ ] 2021-01-29 12：30：47
