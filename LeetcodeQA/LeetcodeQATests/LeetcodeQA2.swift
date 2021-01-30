@@ -1497,6 +1497,196 @@ class LeetcodeQA2: XCTestCase {
         
     }
     
+    
+    /**
+     你准备参加一场远足活动。给你一个二维 rows x columns 的地图 heights ，其中 heights[row][col] 表示格子 (row, col) 的高度。一开始你在最左上角的格子 (0, 0) ，且你希望去最右下角的格子 (rows-1, columns-1) （注意下标从 0 开始编号）。你每次可以往 上，下，左，右 四个方向之一移动，你想要找到耗费 体力 最小的一条路径。
+
+     一条路径耗费的 体力值 是路径上相邻格子之间 高度差绝对值 的 最大值 决定的。
+
+     请你返回从左上角走到右下角的最小 体力消耗值 。
+
+     来源：力扣（LeetCode）
+     链接：https://leetcode-cn.com/problems/path-with-minimum-effort
+     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    open class Vertex :Hashable{
+        public static func == (lhs: LeetcodeQA2.Vertex, rhs: LeetcodeQA2.Vertex) -> Bool {
+            return false
+        }
+        public var hashValue: Int{
+            return self.identifier.hashValue
+        }
+
+        open var identifier: String
+        open var neighbors: [(Vertex, Double)] = []
+        open var pathLengthFromStart = Double.infinity
+        open var pathVerticesFromStart: [Vertex] = []
+
+        public init(identifier: String) {
+            self.identifier = identifier
+        }
+
+        open func clearCache() {
+            pathLengthFromStart = Double.infinity
+            pathVerticesFromStart = []
+        }
+    }
+    
+    
+    public class Dijkstra {
+        private var totalVertices: Set<Vertex>
+
+        public init(vertices: Set<Vertex>) {
+            totalVertices = vertices
+        }
+
+        private func clearCache() {
+            totalVertices.forEach { $0.clearCache() }
+        }
+
+        public func findShortestPaths(from startVertex: Vertex) {
+            clearCache()
+            var currentVertices = self.totalVertices
+            startVertex.pathLengthFromStart = 0
+            startVertex.pathVerticesFromStart.append(startVertex)
+            var currentVertex: Vertex? = startVertex
+            while let vertex = currentVertex {
+                currentVertices.remove(vertex)
+                let filteredNeighbors = vertex.neighbors.filter { currentVertices.contains($0.0) }
+                for neighbor in filteredNeighbors {
+                    let neighborVertex = neighbor.0
+                    let weight = neighbor.1
+
+                    let theoreticNewWeight = vertex.pathLengthFromStart + weight
+                    if theoreticNewWeight < neighborVertex.pathLengthFromStart {
+                        neighborVertex.pathLengthFromStart = theoreticNewWeight
+                        neighborVertex.pathVerticesFromStart = vertex.pathVerticesFromStart
+                        neighborVertex.pathVerticesFromStart.append(neighborVertex)
+                    }
+                }
+                if currentVertices.isEmpty {
+                    currentVertex = nil
+                    break
+                }
+                currentVertex = currentVertices.min { $0.pathLengthFromStart < $1.pathLengthFromStart }
+            }
+        }
+    }
+
+//    extension Vertex: Hashable {
+//        open var hashValue: Int {
+//            return identifier.hashValue
+//        }
+//    }
+
+//    extension Vertex: Equatable {
+//        public static func ==(lhs: Vertex, rhs: Vertex) -> Bool {
+//            return lhs.hashValue == rhs.hashValue
+//        }
+//    }
+    class Solution {
+        func minimumEffortPath(_ heights: [[Int]]) -> Int {
+            let h = heights.count
+            let w = heights[0].count
+            
+            for i in 0..<h {
+                for j in 0..<w {
+                    
+                }
+            }
+            
+            return 0
+        }
+    }
+    
+    
+    
+
+       
+       func swimInWater(grid: [[Int]]) -> Int {
+        
+          let dx = [0,0,1,-1]
+          let dy = [1,-1,0,0]
+           
+           let N = grid.count
+           var canReachMinHeight = -1
+           
+           func canReach(_ position: Int,_ waterHeight: Int) -> Bool {
+               
+               var queue = [Int]()
+               queue.append(0)
+               
+               var visited = Array<Array<Bool>>(repeating: Array<Bool>(repeating: false, count: N), count: N)
+               visited[0][0] = true
+               
+               while !queue.isEmpty {
+                   var nextLevel = [Int]()
+                   for p in queue {
+                       let x = p & 0xff
+                       let y = p >> 8
+                       for index in 0..<4 {
+                           let  nextX = x + dx[index]
+                           let  nextY = y + dy[index]
+                           if nextX >= 0 &&  nextX < N && nextY >= 0 && nextY < N && !visited[nextX][nextY] && grid[nextX][nextY] <= waterHeight {
+                               guard nextY != N  - 1 || nextX !=  N - 1 else {
+                                   canReachMinHeight = waterHeight
+                                   return true
+                               }
+                               visited[nextX][nextY]  = true
+                               nextLevel.append(nextY << 8 | nextX)
+                           }
+                       }
+                   }
+                   queue = nextLevel
+               }
+               
+               return false
+           }
+           
+           var left = grid[0][0]
+           let maxHeight = grid.map {$0.max()!}.max()!
+           guard left < maxHeight else {
+               return left
+           }
+           var right = maxHeight + 1
+           while left < right {
+               let mid =  left + (right -  left) >> 1
+               if canReach(0,mid) {
+                   right = mid
+               }  else {
+                   left = mid + 1
+               }
+           }
+           
+           guard left < canReachMinHeight else {
+               return canReachMinHeight
+           }
+           return canReach(0,left) ? left : canReachMinHeight
+       }
+    
+    
+    func testkWeakestRows(){
+        func kWeakestRows(_ mat: [[Int]], _ k: Int) -> [Int] {
+            var matPower:[Int:Int] = [:]
+            for i in 0..<mat.count {
+                let sum =  mat[i].reduce(0) { (result, value) -> Int in
+                    return result + value
+                }
+                matPower[i] = sum
+            }
+            let sortmatPower = matPower.sorted { (lv, rv) -> Bool in
+                return lv.value == rv.value ?  lv.key < rv.key : lv.value < rv.value
+            }
+            return sortmatPower.prefix(k).map { (kv) -> Int in
+                return kv.key
+            }
+        }
+        
+        kWeakestRows(
+            [[1,1,0,0,0],[1,1,1,1,0],[1,0,0,0,0],[1,1,0,0,0],[1,1,1,1,1]], 3)
+        
+    }
+
 
     
 }
