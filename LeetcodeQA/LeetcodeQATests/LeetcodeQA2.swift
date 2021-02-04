@@ -1687,7 +1687,55 @@ class LeetcodeQA2: XCTestCase {
         
     }
     
+    func testspiralOrder(){
+        
     
+    func spiralOrder(_ matrix: [[Int]]) -> [Int] {
+        guard matrix.count > 0 else {
+            return []
+        }
+        var left = 0,right = matrix[0].count - 1,top = 0,bottom = matrix.count - 1
+        var nums = (right + 1) * (bottom + 1)
+        var ans:[Int] = []
+        while ans.count < nums {
+            
+            
+            for i in stride(from: left, to: right, by: 1) {
+                ans.append(matrix[top][i])
+            }
+            
+            
+            
+            for i in stride(from: top, to: bottom, by: 1) {
+                ans.append(matrix[i][right])
+            }
+            
+            
+            
+            for i in stride(from: right, to: left, by: -1) {
+                ans.append(matrix[bottom][i])
+            }
+           
+            
+            
+            for i in stride(from: bottom, to: top, by: -1) {
+                ans.append(matrix[i][left])
+            }
+            bottom -= 1
+            right -= 1
+            top += 1
+            left += 1
+            
+        }
+        
+        return ans
+    }
+        
+//        spiralOrder([[1,2,3],[4,5,6],[7,8,9]])
+//        spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
+        spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
+//        s.spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
+    }
 
 
     
