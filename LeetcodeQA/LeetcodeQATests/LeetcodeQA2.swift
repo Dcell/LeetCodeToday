@@ -1739,4 +1739,25 @@ class LeetcodeQA2: XCTestCase {
 
 
     
+    func testsubarraysWithK(){
+        func subarraysWithKDistinct(_ A: [Int], _ K: Int) -> Int {
+            var left = 0,right = 0
+            var subSet:Set<Int> = Set()
+            while right < A.count {
+                subSet.insert(A[right])
+                while subSet.count != K && left >= 0 {
+                    subSet.remove(A[left])
+                    left += 1
+                }
+                right += 1
+                if subSet.count == K {
+                    print(subSet)
+                }
+                
+            }
+            return 0
+        }
+        subarraysWithKDistinct([1,2,1,2,3], 2)
+    }
+           
 }
