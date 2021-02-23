@@ -1759,5 +1759,42 @@ class LeetcodeQA2: XCTestCase {
         }
         subarraysWithKDistinct([1,2,1,2,3], 2)
     }
+    
+    func testmaxSatisfied(){
+        func maxSatisfied(_ customers: [Int], _ grumpy: [Int], _ X: Int) -> Int {
+            var left = 0,right = 0;
+            var maxSatisfied = Int.min
+            var satisfied = 0
+            var sum = 0
+            for i in 0..<customers.count {
+                if grumpy[i] == 0 {
+                    sum += customers[i]
+                }
+            }
+            while right < customers.count {
+                if grumpy[right] == 0 {
+                    sum -= customers[right]
+                }
+                satisfied += customers[right]
+                while right - left + 1 > X {
+                    if grumpy[left] == 0 {
+                        sum += customers[left]
+                    }
+                    satisfied -= customers[left]
+                    left += 1
+                }
+                print(sum)
+                print(satisfied)
+               
+                maxSatisfied = max(satisfied + sum, maxSatisfied)
+                print(maxSatisfied)
+                print("-----")
+                right += 1
+            }
+            return maxSatisfied
+        }
+        maxSatisfied([1,0,1,2,1,1,7,5], [0,1,0,1,0,1,0,1], 3)
+    }
+
            
 }
