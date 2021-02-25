@@ -1796,5 +1796,25 @@ class LeetcodeQA2: XCTestCase {
         maxSatisfied([1,0,1,2,1,1,7,5], [0,1,0,1,0,1,0,1], 3)
     }
 
+    func testlongestSubarray(){
+        func longestSubarray(_ nums: [Int], _ limit: Int) -> Int {
+            var left = 0,right = 0
+            var maxNum = Int.min, minNum = Int.max
+            var ans = 0
+            while right < nums.count {
+                maxNum = max(maxNum, nums[right])
+                minNum = min(minNum, nums[right])
+                while maxNum - minNum > limit  {
+                    maxNum = max(maxNum, nums[left])
+                    minNum = min(minNum, nums[left])
+                    left += 1
+                }
+                ans = max(ans, right - left + 1)
+                right += 1
+            }
+            return ans
+        }
+        longestSubarray([8,2,4,7], 4)
+    }
            
 }
