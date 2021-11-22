@@ -19,11 +19,14 @@ class Solution {
         if self.hashMap.keys.contains(n) {
             return self.hashMap[n]!
         }
+        var ans = 0
         if n%2 == 0 {
-            return integerReplacement(n/2) + 1
+            ans = integerReplacement(n/2) + 1
         }else{
-            return min(integerReplacement(n-1),integerReplacement((n + 1)/2) + 1)+1
+            ans = min(integerReplacement(n-1),integerReplacement((n + 1)/2) + 1)+1
         }
+        hashMap[n] = ans
+        return ans
     }
 }
 // @lc code=end
