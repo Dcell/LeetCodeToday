@@ -14,22 +14,21 @@ class Solution {
         let goalArray = Array(goal)
         var changeHash:[Character] = []
         var change2Hash:[Character] = []
+        var hashSet:Set<Character> = []
+        var isFormat =  false
         for i in 0..<s.count{
             if sArray[i] != goalArray[i] {
                 changeHash.append(sArray[i])
                 change2Hash.append(goalArray[i])
             }
+            if (hashSet.contains(sArray[i])){
+                isFormat = true
+            }else{
+                hashSet.insert(sArray[i])
+            }
         }
         if changeHash.isEmpty {
-            var hashSet:Set<Character> = []
-            for i in 0..<sArray.count {
-                if (hashSet.contains(sArray[i])){
-                    return true
-                }else{
-                    hashSet.insert(sArray[i])
-                }
-            }
-            return false
+            return isFormat
         }
         if changeHash.count != 2{
             return false
