@@ -290,28 +290,33 @@ extension PriorityQueue where T: Equatable {
 
 
 class Solution {
+    class AppleBox{
+        var count = 0
+        var deadtime = 0
+    }
     func eatenApples(_ apples: [Int], _ days: [Int]) -> Int {
-        var appleList = PriorityQueue<Int>(sort: <)
-        var ans = 0
-        var index = 0
-        while (appleList.count != 0 || index < apples.count) {
-//            appleList.heap.nodes = appleList.heap.nodes.map { apple in
-//                return apple - 1
-//            }
-            while(!appleList.isEmpty && appleList.peek()! - index <= 0){
+        var appleList = PriorityQueue<AppleBox> { lv, rv in
+            return lv.deadtime < rv.deadtime
+        }//优先队列，存储的是某个苹果的过期时间
+        var ans = 0//答案
+        var index = 0 //第几天
+        while (appleList.count != 0 || index < apples.count) { // 如果还有苹果可以吃，或者 苹果树还能长苹果
+            while(!appleList.isEmpty && (appleList.peek()!.deadtime - index <= 0 || appleList.peek()!.count < 1)){ // 通过优先队列，扔掉那些刚刚烂掉的苹果
                 appleList.dequeue()
             }
             if(index < apples.count){ //添加新苹果
-                let count = apples[index]
-                for _ in 0..<count {
-                    appleList.enqueue(days[index] + index)
+                let appleBox = AppleBox()
+                appleBox.deadtime = days[index] + index
+                appleBox.count = apples[index]
+                if appleBox.count > 0 {
+                    appleList.enqueue(appleBox)
                 }
             }
-            if appleList.count > 0 {
-                appleList.dequeue()
+            if appleList.count > 0 { // 吃一个个
+                appleList.peek()!.count = appleList.peek()!.count - 1
                 ans += 1
             }
-            index += 1
+            index += 1 // 下一天
         }
         return ans
     }
